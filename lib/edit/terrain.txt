@@ -2,7 +2,7 @@
 
 
 # This file is used to initialize the "terrain feature" information for 
-# the Angband game.
+# the reposband game.
 
 # Do not modify this file unless you know exactly what you are doing,
 # unless you wish to risk possible system crashes and broken savefiles.

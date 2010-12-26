@@ -17,7 +17,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "attack.h"
 #include "effects.h"
 #include "cmds.h"
@@ -758,7 +758,7 @@ static bool describe_combat(textblock *tb, const object_type *o_ptr,
 	{
 		bool nonweap = FALSE;
 
-		for (i = INVEN_LEFT; i < INVEN_TOTAL; i++)
+		for (i = INVEN_FINGER; i < INVEN_TOTAL; i++)
 		{
 			object_flags_known(&p_ptr->inventory[i], tmp_f);
 
@@ -868,8 +868,9 @@ static bool describe_digger(textblock *tb, const object_type *o_ptr,
 	 * we shouldn't put a copy of it on the left finger before calculating
 	 * digging skills.
 	 */
+	 /* Don't get it, so I'm dumping it -Simon
 	if (o_ptr != &p_ptr->inventory[INVEN_RIGHT])
-		inven[sl] = *o_ptr;
+		inven[sl] = *o_ptr; */
 
 	calc_bonuses(inven, &st, TRUE);
 

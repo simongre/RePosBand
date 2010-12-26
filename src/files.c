@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "cmds.h"
 #include "game-cmd.h"
@@ -1283,7 +1283,7 @@ bool show_file(cptr name, cptr what, int line, int mode)
 	{
 		strnfmt(caption, sizeof(caption), "Help file '%s'", name);
 
-		path_build(path, sizeof(path), ANGBAND_DIR_HELP, name);
+		path_build(path, sizeof(path), reposband_DIR_HELP, name);
 		fff = file_open(path, MODE_READ, -1);
 	}
 
@@ -1292,7 +1292,7 @@ bool show_file(cptr name, cptr what, int line, int mode)
 	{
 		strnfmt(caption, sizeof(caption), "Info file '%s'", name);
 
-		path_build(path, sizeof(path), ANGBAND_DIR_INFO, name);
+		path_build(path, sizeof(path), reposband_DIR_INFO, name);
 		fff = file_open(path, MODE_READ, -1);
 	}
 
@@ -1703,7 +1703,7 @@ void process_player_name(bool sf)
 #endif
 
 		/* Build the filename */
-		path_build(savefile, sizeof(savefile), ANGBAND_DIR_SAVE, temp);
+		path_build(savefile, sizeof(savefile), reposband_DIR_SAVE, temp);
 	}
 }
 
@@ -1906,7 +1906,7 @@ void html_screenshot(cptr name, int mode)
 	char buf[1024];
 
 
-	path_build(buf, sizeof(buf), ANGBAND_DIR_USER, name);
+	path_build(buf, sizeof(buf), reposband_DIR_USER, name);
 	fp = file_open(buf, MODE_WRITE, FTYPE_TEXT);
 
 	/* Oops */
@@ -1949,9 +1949,9 @@ void html_screenshot(cptr name, int mode)
 				if (oa == TERM_WHITE)
 				{
 					file_putf(fp, new_color_fmt,
-					        angband_color_table[a][1],
-					        angband_color_table[a][2],
-					        angband_color_table[a][3]);
+					        reposband_color_table[a][1],
+					        reposband_color_table[a][2],
+					        reposband_color_table[a][3]);
 				}
 
 				/* From another color to the default white */
@@ -1964,9 +1964,9 @@ void html_screenshot(cptr name, int mode)
 				else
 				{
 					file_putf(fp, change_color_fmt,
-					        angband_color_table[a][1],
-					        angband_color_table[a][2],
-					        angband_color_table[a][3]);
+					        reposband_color_table[a][1],
+					        reposband_color_table[a][2],
+					        reposband_color_table[a][3]);
 				}
 
 				/* Remember the last color */

@@ -1,6 +1,6 @@
 # File: object.txt
 #
-# This file is used to initialize the "object kind" information for Angband.
+# This file is used to initialize the "object kind" information for reposband.
 # Modifying this file when you don't know what you're doing may be harmful 
 # to you or your character's health.  It could possibly be considered cheating 
 # under some circumstances, too. :)

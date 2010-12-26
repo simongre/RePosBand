@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "button.h"
 #include "tvalsval.h"
 #include "cmds.h"
@@ -278,60 +278,73 @@ void show_equip(olist_detail_t mode)
 	/* Build the object list */
 	for (i = INVEN_WIELD; i <= last_slot; i++)
 	{
-		o_ptr = &p_ptr->inventory[i];
-
-		/* May need a blank line to separate the quiver */
-		if (i == INVEN_TOTAL)
+		if (((i >= INVEN_WIELD) && (i < (INVEN_WIELD + rp_ptr->melee_slots)))
+			|| ((i >= INVEN_BOW) && (i < (INVEN_BOW + rp_ptr->range_slots)))
+			|| ((i >= INVEN_FINGER) && (i < (INVEN_FINGER + rp_ptr->ring_slots)))
+			|| ((i >= INVEN_NECK) && (i < (INVEN_NECK + rp_ptr->amulet_slots)))
+			|| ((i >= INVEN_LIGHT) && (i < (INVEN_LIGHT + rp_ptr->light_slots)))
+			|| ((i >= INVEN_BODY) && (i < (INVEN_BODY + rp_ptr->body_slots)))
+			|| ((i >= INVEN_OUTER) && (i < (INVEN_OUTER + rp_ptr->cloak_slots)))
+			|| ((i >= INVEN_ARM) && (i < (INVEN_ARM + rp_ptr->shield_slots)))
+			|| ((i >= INVEN_HEAD) && (i < (INVEN_HEAD + rp_ptr->helm_slots)))
+			|| ((i >= INVEN_HANDS) && (i < (INVEN_HANDS + rp_ptr->glove_slots)))
+			|| ((i >= INVEN_FEET) && (i < (INVEN_FEET + rp_ptr->boot_slots))))
 		{
-			int j;
-			bool need_spacer = FALSE;
-			
-			/* Scan the rest of the items for acceptable entries */
-			for (j = i; j < last_slot; j++)
+			o_ptr = &p_ptr->inventory[i];
+
+			/* May need a blank line to separate the quiver */
+			if (i == INVEN_TOTAL)
 			{
-				o_ptr = &p_ptr->inventory[j];
-				if (item_tester_okay(o_ptr)) need_spacer = TRUE;
+				int j;
+				bool need_spacer = FALSE;
+				
+				/* Scan the rest of the items for acceptable entries */
+				for (j = i; j < last_slot; j++)
+				{
+					o_ptr = &p_ptr->inventory[j];
+					if (item_tester_okay(o_ptr)) need_spacer = TRUE;
+				}
+
+				/* Add a spacer between equipment and quiver */
+				if (num_obj > 0 && need_spacer)
+				{
+					my_strcpy(labels[num_obj], "", sizeof(labels[num_obj]));
+					objects[num_obj] = NULL;
+					num_obj++;
+				}
+
+				continue;
 			}
 
-			/* Add a spacer between equipment and quiver */
-			if (num_obj > 0 && need_spacer)
+			/* Acceptable items get a label */
+			if (item_tester_okay(o_ptr))
+				strnfmt(labels[num_obj], sizeof(labels[num_obj]), "%c) ", index_to_label(num_obj));
+
+			/* Unacceptable items are still displayed in term windows */
+			else if (in_term)
+				my_strcpy(labels[num_obj], "   ", sizeof(labels[num_obj]));
+
+			/* Unacceptable items are skipped in the main window */
+			else continue;
+
+			/* Show full slot labels */
+			if (OPT(show_labels))
 			{
-				my_strcpy(labels[num_obj], "", sizeof(labels[num_obj]));
-				objects[num_obj] = NULL;
-				num_obj++;
+				strnfmt(tmp_val, sizeof(tmp_val), "%-14s: ", mention_use(i));
+				my_strcat(labels[num_obj], tmp_val, sizeof(labels[num_obj]));
 			}
 
-			continue;
+			/* Otherwise only show short quiver labels */
+			else if (i >= QUIVER_START)
+			{
+				strnfmt(tmp_val, sizeof(tmp_val), "[f%d]: ", i - QUIVER_START);
+				my_strcat(labels[num_obj], tmp_val, sizeof(labels[num_obj]));
+			}
+
+			/* Save the object */
+			objects[num_obj] = o_ptr;
+			num_obj++;
 		}
-
-		/* Acceptable items get a label */
-		if (item_tester_okay(o_ptr))
-			strnfmt(labels[num_obj], sizeof(labels[num_obj]), "%c) ", index_to_label(i));
-
-		/* Unacceptable items are still displayed in term windows */
-		else if (in_term)
-			my_strcpy(labels[num_obj], "   ", sizeof(labels[num_obj]));
-
-		/* Unacceptable items are skipped in the main window */
-		else continue;
-
-		/* Show full slot labels */
-		if (OPT(show_labels))
-		{
-			strnfmt(tmp_val, sizeof(tmp_val), "%-14s: ", mention_use(i));
-			my_strcat(labels[num_obj], tmp_val, sizeof(labels[num_obj]));
-		}
-
-		/* Otherwise only show short quiver labels */
-		else if (i >= QUIVER_START)
-		{
-			strnfmt(tmp_val, sizeof(tmp_val), "[f%d]: ", i - QUIVER_START);
-			my_strcat(labels[num_obj], tmp_val, sizeof(labels[num_obj]));
-		}
-
-		/* Save the object */
-		objects[num_obj] = o_ptr;
-		num_obj++;
 	}
 
 	/* Display the object list */
@@ -740,10 +753,10 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 		int ne = 0;
 
 		/* Scan windows */
-		for (j = 0; j < ANGBAND_TERM_MAX; j++)
+		for (j = 0; j < reposband_TERM_MAX; j++)
 		{
 			/* Unused */
-			if (!angband_term[j]) continue;
+			if (!reposband_term[j]) continue;
 
 			/* Count windows displaying inven */
 			if (op_ptr->window_flag[j] & (PW_INVEN)) ni++;

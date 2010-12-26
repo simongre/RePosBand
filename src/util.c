@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "button.h"
 #include "game-event.h"
 #include "macro.h"
@@ -876,7 +876,7 @@ static ui_event_data inkey_aux(int scan_cutoff)
  * This special pointer allows a sequence of keys to be "inserted" into
  * the stream of keys returned by "inkey()".  This key sequence will not
  * trigger any macros, and cannot be bypassed by the Borg.  It is used
- * in Angband to handle "keymaps".
+ * in reposband to handle "keymaps".
  */
 cptr inkey_next = NULL;
 
@@ -944,9 +944,9 @@ char (*inkey_hack)(int flush_first) = NULL;
  * any time.  These sub-commands could include commands to take a picture of
  * the current screen, to start/stop recording a macro action, etc.
  *
- * If "angband_term[0]" is not active, we will make it active during this
+ * If "reposband_term[0]" is not active, we will make it active during this
  * function, so that the various "main-xxx.c" files can assume that input
- * is only requested (via "Term_inkey()") when "angband_term[0]" is active.
+ * is only requested (via "Term_inkey()") when "reposband_term[0]" is active.
  *
  * Mega-Hack -- This function is used as the entry point for clearing the
  * "signal_count" variable, and of the "character_saved" variable.
@@ -2637,7 +2637,7 @@ static bool get_file_text(const char *suggested_name, char *path, size_t len)
 	if (buf[0] == '\0' || buf[0] == ' ') return FALSE;
 
 	/* Build the path */
-	path_build(path, len, ANGBAND_DIR_USER, buf);
+	path_build(path, len, reposband_DIR_USER, buf);
 
 	/* Check if it already exists */
 	if (file_exists(buf))
@@ -2810,7 +2810,7 @@ cptr attr_to_text(byte a)
  * XXX XXX XXX Important note about "colors" XXX XXX XXX
  *
  * The "TERM_*" color definitions list the "composition" of each
- * "Angband color" in terms of "quarters" of each of the three color
+ * "reposband color" in terms of "quarters" of each of the three color
  * components (Red, Green, Blue), for example, TERM_UMBER is defined
  * as 2/4 Red, 1/4 Green, 0/4 Blue.
  *

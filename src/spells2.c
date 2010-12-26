@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "generate.h"
 #include "history.h"
@@ -71,7 +71,7 @@ bool hp_player(int num)
  * Heal the player by a given percentage of his wounds, or a minimum
  * amount, whichever is larger.
  *
- * Copied wholesale from EyAngband.
+ * Copied wholesale from Eyreposband.
  */
 bool heal_player(int perc, int min)
 {

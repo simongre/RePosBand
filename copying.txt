@@ -1,4 +1,4 @@
-Angband is free software; you can redistribute it and/or modify it under the 
+reposband is free software; you can redistribute it and/or modify it under the 
 terms of either the GNU General Public License as published by the Free Software 
 Foundation, version 2, or the "Angband licence", shown below, with some 
 exceptions:
@@ -26,17 +26,17 @@ exceptions:
  * the sounds are freeware, whatever that means.
 
  * The font files are all by Leon Marrick and/or Sheldon Simms III and/or Nick
-   McConnell, all of whom have agreed to their Angband work being released
+   McConnell, all of whom have agreed to their reposband work being released
    under the GPL.
 
 It is considered good practice to retain this statement for derivatives, rather
 than (e.g.) redistributing Adam Bolt's tiles under the GPL, or choosing to make
-a variant which is only under one of the Angband or GPL licences.  This allows
+a variant which is only under one of the reposband or GPL licences.  This allows
 easier sharing of changes between variants.
 
 ------------------------------------------------------------------------------
 
-The Angband Licence is:
+The Angband licence is:
 
 Copyright (c) 1997 Ben Harrison, James E. Wilson, Robert A. Koeneke
 

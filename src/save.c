@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "history.h"
 #include "monster/monster.h"
 #include "option.h"
@@ -135,8 +135,8 @@ void wr_options(void)
 
 	u32b flag[8];
 	u32b mask[8];
-	u32b window_flag[ANGBAND_TERM_MAX];
-	u32b window_mask[ANGBAND_TERM_MAX];
+	u32b window_flag[reposband_TERM_MAX];
+	u32b window_mask[reposband_TERM_MAX];
 
 
 	/* XXX */
@@ -186,7 +186,7 @@ void wr_options(void)
 	/*** Window options ***/
 
 	/* Reset */
-	for (i = 0; i < ANGBAND_TERM_MAX; i++)
+	for (i = 0; i < reposband_TERM_MAX; i++)
 	{
 		/* Flags */
 		window_flag[i] = op_ptr->window_flag[i];
@@ -206,10 +206,10 @@ void wr_options(void)
 	}
 
 	/* Dump the flags */
-	for (i = 0; i < ANGBAND_TERM_MAX; i++) wr_u32b(window_flag[i]);
+	for (i = 0; i < reposband_TERM_MAX; i++) wr_u32b(window_flag[i]);
 
 	/* Dump the masks */
-	for (i = 0; i < ANGBAND_TERM_MAX; i++) wr_u32b(window_mask[i]);
+	for (i = 0; i < reposband_TERM_MAX; i++) wr_u32b(window_mask[i]);
 }
 
 

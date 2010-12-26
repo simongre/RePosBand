@@ -21,7 +21,7 @@ Please press Space to view the rest of this file...
 
 === General Information ===
 
-Angband is basically a complex single player dungeon simulation.  A 
+reposband is basically a complex single player dungeon simulation.  A 
 player creates a character, choosing from a variety of races and 
 classes, and then plays that character over a period of days, weeks, 
 even months.
@@ -29,14 +29,14 @@ even months.
 The player will begin his adventure on the town level where he may 
 acquire supplies, weapons, armor, and magical devices by buying from 
 various shop owners.  Then the player can descend into the Pits of 
-Angband, where he will explore the many levels of the dungeon, gaining 
+reposband, where he will explore the many levels of the dungeon, gaining 
 experience by killing fierce creatures, collecting powerful objects and 
 valuable treasure, and returning to town occasionally to buy and sell 
 supplies.  Eventually, as the player grows more experienced, he may 
 attempt to win the game by defeating Morgoth, the Lord of Darkness, who 
 resides far below the surface.
 
-Note that Angband is a very complex game, and it may be difficult to 
+Note that reposband is a very complex game, and it may be difficult to 
 grasp everything at first, especially if you have never played a 
 "roguelike" game before.  You should probably browse through all of the 
 "online help files", especially this one, before beginning any serious 
@@ -45,25 +45,25 @@ adventuring...
 
 === About the game ===
 
-Angband has been maintained by a succession of volunteers since it was 
+reposband has been maintained by a succession of volunteers since it was 
 written in the early 1990s. The current maintainer is Andi Sidwell.
 
-Angband will run on a wide variety of systems (including Unix, 
+reposband will run on a wide variety of systems (including Unix, 
 Macintosh, Amiga, Windows, RISC OS, etc).  It is written in C, and the 
 source code is freely available.  Creating a version for a new platform 
 involves writing as few as 100 lines of code and recompiling.
 
-See the Official Angband Home Page at http://rephial.org/ for up to date 
-information about the latest version of Angband, including a complete 
+See the Official reposband Home Page at http://rephial.org/ for up to date 
+information about the latest version of reposband, including a complete 
 list of recent modifications and a wiki about the game which includes a 
 full user guide.
 
 You can post compliments, complaints, suggestions, bug reports, and 
 patches at http://angband.oook.cz, or to the newsgroup 
-'rec.games.roguelike.angband'. You can also post interesting experiences 
+'rec.games.roguelike.reposband'. You can also post interesting experiences 
 and ask for help.
 
-This version of Angband is under the GNU General Public Licence (GPL) 
+This version of reposband is under the GNU General Public Licence (GPL) 
 version 2. A copy of this licence is included with the game, in the file 
 copying.txt.
 
@@ -81,18 +81,18 @@ executables. Spoiler files may be placed into the "lib/info" directory,
 or into a user specified external directory, to allow access via the 
 "online help" system.
 
-Remember to tell all your friends about how much you like Angband...
+Remember to tell all your friends about how much you like reposband...
 
 
 
 
 === A quick demonstration ===
 
-Angband is, as mentioned above, a very complex game, so you may want to 
+reposband is, as mentioned above, a very complex game, so you may want to 
 try the following quick demonstration.  The following instructions are 
 for demonstration purposes only, and so they are intentionally boring.
 
-For this demo, we will assume that you have never played Angband before, 
+For this demo, we will assume that you have never played reposband before, 
 that you have not requested any special "sub-windows", that you have not 
 requested any special "graphics" modes, that you have a "numeric keypad" 
 on your computer, and that you are using the default options, including, 
@@ -120,7 +120,7 @@ three times and your character will be placed into the "town".
 
 You should now be looking at the basic dungeon interaction screen.  To 
 the left is some information about your character.  To the right is an 
-overhead view of the town.  Nothing happens in Angband while the game is 
+overhead view of the town.  Nothing happens in reposband while the game is 
 waiting for you to specify a command, so take a good look at the town.  
 You will see a variety of symbols on the screen.  Each symbol normally 
 represents a terrain feature, an object, or a monster.  The "@" symbol 
@@ -131,7 +131,7 @@ verify the meaning of the "@" symbol.
 The solid blocks (which may be "#" symbols on some systems) around the 
 edge of the town represent the walls that surround the the town. You 
 cannot leave the town above ground, although some games derived from 
-Angband (called "variants") have an overground element.
+reposband (called "variants") have an overground element.
 
 The large rectangles represent stores. The "numeric" symbols represent 
 an "entrance" to a store.  The "." symbols represent the "floor".  It is 
@@ -225,7 +225,7 @@ player and the character, it becomes so "obvious" that you start to
 ignore it.  At that point, you find yourself merging the player and the 
 character in your mind, and you find yourself saying things like "So 
 yesterday, I was at my friend's house, and I stayed up late playing 
-Angband, and I was attacked by some wild dogs, and I got killed by a 
+reposband, and I was attacked by some wild dogs, and I got killed by a 
 demon, but I made it to the high score list", in which the pronoun 
 changes back and forth from the real world to the virtual one several 
 times in the same sentence.  So, from this point on you may have to 
@@ -315,7 +315,7 @@ throw a flask of oil at the nearest monster.  To drop an item from your
 inventory, press "d" plus the index of that item.  You can use the "^X" 
 key to quit and save the game.
 
-You now know enough to play a quick game of Angband.  There is a lot 
+You now know enough to play a quick game of reposband.  There is a lot 
 more for you to learn, including how to interpret information about your 
 character, how to create different kinds of characters, how to determine 
 which equipment to wield/wear, how to use various kinds of objects, and 

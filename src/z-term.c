@@ -15,7 +15,7 @@
  *    and not for profit purposes provided that this copyright and statement
  *    are included in all such copies.  Other copyrights may also apply.
  */
-#include "angband.h"
+#include "reposband.h"
 
 
 /*
@@ -33,13 +33,13 @@
  * programs which will look the same on a dumb terminal as they do
  * on a graphic platform such as the Macintosh.
  *
- * This package was designed to help port the game "Angband" to a wide
- * variety of different platforms.  Angband, like many other games in
+ * This package was designed to help port the game "reposband" to a wide
+ * variety of different platforms.  reposband, like many other games in
  * the "rogue-like" heirarchy, requires, at the minimum, the ability
  * to display "colored textual symbols" in a standard 80x24 "window",
  * such as that provided by most dumb terminals, and many old personal
  * computers, and to check for "keypresses" from the user.  The major
- * concerns were thus portability and efficiency, so Angband could be
+ * concerns were thus portability and efficiency, so reposband could be
  * easily ported to many different systems, with minimal effort, and
  * yet would run quickly on each of these systems, no matter what kind
  * of underlying hardware/software support was being used.
@@ -238,10 +238,10 @@
  * the terrain values as a background and the "ap", "cp" values in
  * the foreground.
  *
- * The game "Angband" uses a set of files called "main-xxx.c", for
+ * The game "reposband" uses a set of files called "main-xxx.c", for
  * various "xxx" suffixes.  Most of these contain a function called
  * "init_xxx()", that will prepare the underlying visual system for
- * use with Angband, and then create one or more "term" structures,
+ * use with reposband, and then create one or more "term" structures,
  * using flags and hooks appropriate to the given platform, so that
  * the "main()" function can call one (or more) of the "init_xxx()"
  * functions, as appropriate, to prepare the required "term" structs
@@ -251,23 +251,23 @@
  * addition to doing everything needed to initialize the actual program,
  * also does everything that the normal "init_xxx()" functions would do.
  *
- * The game "Angband" defines, in addition to "attr 0", all of the
+ * The game "reposband" defines, in addition to "attr 0", all of the
  * attr codes from 1 to 15, using definitions in "defines.h", and
- * thus the "main-xxx.c" files used by Angband must handle these
+ * thus the "main-xxx.c" files used by reposband must handle these
  * attr values correctly.  Also, they must handle all other attr
  * values, though they may do so in any way they wish, for example,
  * by always taking every attr code mod 16.  Many of the "main-xxx.c"
  * files use "white space" ("attr 1" / "char 32") to "erase" or "clear"
  * any window, for efficiency.
  *
- * The game "Angband" uses the "Term_user" hook to allow any of the
+ * The game "reposband" uses the "Term_user" hook to allow any of the
  * "main-xxx.c" files to interact with the user, by calling this hook
  * whenever the user presses the "!" key when the game is waiting for
  * a new command.  This could be used, for example, to provide "unix
  * shell commands" to the Unix versions of the game.
  *
  * See "main-xxx.c" for a simple skeleton file which can be used to
- * create a "visual system" for a new platform when porting Angband.
+ * create a "visual system" for a new platform when porting reposband.
  */
 
 

@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 #include <errno.h>
-#include "angband.h"
+#include "reposband.h"
 #include "savefile.h"
 
 

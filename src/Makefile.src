@@ -6,10 +6,10 @@
 #
 
 VERSION = 3.1.2
-COPYRIGHT = (c) 1995-2010 Angband contributors
+COPYRIGHT = (c) 1995-2010 reposband contributors
 
 HEADERS = \
-	angband.h \
+	reposband.h \
 	birth.h \
 	cmds.h \
 	config.h \

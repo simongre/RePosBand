@@ -17,7 +17,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "history.h"
 #include "monster/monster.h"

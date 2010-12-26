@@ -2,7 +2,7 @@
  * File: target.c
  * Purpose: Targetting code
  *
- * Copyright (c) 1997-2007 Angband contributors
+ * Copyright (c) 1997-2007 reposband contributors
  *
  * This work is free software; you can redistribute it and/or modify it
  * under the terms of either:
@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "game-cmd.h"
 #include "monster/monster.h"
@@ -458,12 +458,12 @@ bool adjust_panel_help(int y, int x, bool help)
 							   : (Term->hgt - ROW_MAP - 1);
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
 		int wx, wy;
 		int screen_hgt, screen_wid;
 
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;

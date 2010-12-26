@@ -17,7 +17,7 @@
  *    and not for profit purposes provided that this copyright and statement
  *    are included in all such copies.  Other copyrights may also apply.
  */
-#include "angband.h"
+#include "reposband.h"
 #include "cmds.h"
 #include "macro.h"
 #include "squelch.h"
@@ -49,7 +49,7 @@ static void dump_pref_file(void (*dump)(ang_file *), const char *title, int row)
 	if (askfor_aux(ftmp, sizeof ftmp, NULL))
 	{
 		/* Build the filename */
-		path_build(buf, sizeof(buf), ANGBAND_DIR_USER, ftmp);
+		path_build(buf, sizeof(buf), reposband_DIR_USER, ftmp);
 	
 		prt("", 0, 0);
 		if (prefs_save(buf, dump, title))
@@ -188,11 +188,11 @@ static void do_cmd_options_win(const char *name, int row)
 
 	ui_event_data ke;
 
-	u32b new_flags[ANGBAND_TERM_MAX];
+	u32b new_flags[reposband_TERM_MAX];
 
 
 	/* Set new flags to the old values */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
 		new_flags[j] = op_ptr->window_flag[j];
 	}
@@ -209,11 +209,11 @@ static void do_cmd_options_win(const char *name, int row)
 		prt("Window flags (<dir> to move, 't'/Enter to toggle, or ESC)", 0, 0);
 
 		/* Display the windows */
-		for (j = 0; j < ANGBAND_TERM_MAX; j++)
+		for (j = 0; j < reposband_TERM_MAX; j++)
 		{
 			byte a = TERM_WHITE;
 
-			cptr s = angband_term_name[j];
+			cptr s = reposband_term_name[j];
 
 			/* Use color */
 			if (j == x) a = TERM_L_BLUE;
@@ -239,7 +239,7 @@ static void do_cmd_options_win(const char *name, int row)
 			Term_putstr(0, i + 5, -1, a, str);
 
 			/* Display the windows */
-			for (j = 0; j < ANGBAND_TERM_MAX; j++)
+			for (j = 0; j < reposband_TERM_MAX; j++)
 			{
 				char c = '.';
 
@@ -272,7 +272,7 @@ static void do_cmd_options_win(const char *name, int row)
 			int choicex = (ke.mousex - 35)/5;
 
 			if ((choicey >= 0) && (choicey < PW_MAX_FLAGS)
-				&& (choicex > 0) && (choicex < ANGBAND_TERM_MAX)
+				&& (choicex > 0) && (choicex < reposband_TERM_MAX)
 				&& !(ke.mousex % 5))
 			{
 				y = choicey;
@@ -313,7 +313,7 @@ static void do_cmd_options_win(const char *name, int row)
 		/* Move */
 		if (d != 0)
 		{
-			x = (x + ddx[d] + 8) % ANGBAND_TERM_MAX;
+			x = (x + ddx[d] + 8) % reposband_TERM_MAX;
 			y = (y + ddy[d] + 16) % PW_MAX_FLAGS;
 		}
 
@@ -325,7 +325,7 @@ static void do_cmd_options_win(const char *name, int row)
 	}
 
 	/* Notice changes */
-	subwindows_set_flags(new_flags, ANGBAND_TERM_MAX);
+	subwindows_set_flags(new_flags, reposband_TERM_MAX);
 
 	screen_load();
 }
@@ -867,10 +867,10 @@ static void colors_modify(const char *title, int row)
 		/* Label the Current values */
 		Term_putstr(5, 12, -1, TERM_WHITE,
 				format("K = 0x%02x / R,G,B = 0x%02x,0x%02x,0x%02x",
-				   angband_color_table[a][0],
-				   angband_color_table[a][1],
-				   angband_color_table[a][2],
-				   angband_color_table[a][3]));
+				   reposband_color_table[a][0],
+				   reposband_color_table[a][1],
+				   reposband_color_table[a][2],
+				   reposband_color_table[a][3]));
 
 		/* Prompt */
 		Term_putstr(0, 14, -1, TERM_WHITE,
@@ -885,14 +885,14 @@ static void colors_modify(const char *title, int row)
 		/* Analyze */
 		if (cx == 'n') a = (byte)(a + 1);
 		if (cx == 'N') a = (byte)(a - 1);
-		if (cx == 'k') angband_color_table[a][0] = (byte)(angband_color_table[a][0] + 1);
-		if (cx == 'K') angband_color_table[a][0] = (byte)(angband_color_table[a][0] - 1);
-		if (cx == 'r') angband_color_table[a][1] = (byte)(angband_color_table[a][1] + 1);
-		if (cx == 'R') angband_color_table[a][1] = (byte)(angband_color_table[a][1] - 1);
-		if (cx == 'g') angband_color_table[a][2] = (byte)(angband_color_table[a][2] + 1);
-		if (cx == 'G') angband_color_table[a][2] = (byte)(angband_color_table[a][2] - 1);
-		if (cx == 'b') angband_color_table[a][3] = (byte)(angband_color_table[a][3] + 1);
-		if (cx == 'B') angband_color_table[a][3] = (byte)(angband_color_table[a][3] - 1);
+		if (cx == 'k') reposband_color_table[a][0] = (byte)(reposband_color_table[a][0] + 1);
+		if (cx == 'K') reposband_color_table[a][0] = (byte)(reposband_color_table[a][0] - 1);
+		if (cx == 'r') reposband_color_table[a][1] = (byte)(reposband_color_table[a][1] + 1);
+		if (cx == 'R') reposband_color_table[a][1] = (byte)(reposband_color_table[a][1] - 1);
+		if (cx == 'g') reposband_color_table[a][2] = (byte)(reposband_color_table[a][2] + 1);
+		if (cx == 'G') reposband_color_table[a][2] = (byte)(reposband_color_table[a][2] - 1);
+		if (cx == 'b') reposband_color_table[a][3] = (byte)(reposband_color_table[a][3] + 1);
+		if (cx == 'B') reposband_color_table[a][3] = (byte)(reposband_color_table[a][3] - 1);
 
 		/* Hack -- react to changes */
 		Term_xtra(TERM_XTRA_REACT, 0);

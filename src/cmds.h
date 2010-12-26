@@ -130,6 +130,7 @@ void textui_book_browse(const object_type *o_ptr);
 void textui_spell_browse(void);
 void textui_obj_study(void);
 void textui_obj_cast(void);
+void print_powers(void);
 
 /* ui-knowledge.c */
 extern void big_pad(int col, int row, byte a, byte c);

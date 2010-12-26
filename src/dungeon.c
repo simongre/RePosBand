@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "button.h"
 #include "cave.h"
 #include "cmds.h"
@@ -1648,7 +1648,7 @@ void play_game(void)
 	bool existing_dead_save = FALSE;
 
 	/* Initialize */
-	bool new_game = init_angband();
+	bool new_game = init_reposband();
 
 	/*** Do horrible, hacky things, to start the game off ***/
 

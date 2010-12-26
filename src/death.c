@@ -2,7 +2,7 @@
  * File: death.c
  * Purpose: Handle the UI bits that happen after the character dies.
  *
- * Copyright (c) 1987 - 2007 Angband contributors
+ * Copyright (c) 1987 - 2007 reposband contributors
  *
  * This work is free software; you can redistribute it and/or modify it
  * under the terms of either:
@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cmds.h"
 #include "files.h"
 #include "history.h"
@@ -66,7 +66,7 @@ static void print_tomb(void)
 	Term_clear();
 
 	/* Open the death file */
-	path_build(buf, sizeof(buf), ANGBAND_DIR_FILE, "dead.txt");
+	path_build(buf, sizeof(buf), reposband_DIR_FILE, "dead.txt");
 	fp = file_open(buf, MODE_READ, -1);
 
 	if (fp)
@@ -151,7 +151,7 @@ static void display_winner(void)
 	int width = 0;
 
 
-	path_build(buf, sizeof(buf), ANGBAND_DIR_FILE, "crown.txt");
+	path_build(buf, sizeof(buf), reposband_DIR_FILE, "crown.txt");
 	fp = file_open(buf, MODE_READ, -1);
 
 	Term_clear();

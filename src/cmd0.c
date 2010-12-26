@@ -10,13 +10,13 @@
  * a) the GNU General Public License as published by the Free Software
  *    Foundation, version 2, or
  *
- * b) the "Angband licence":
+ * b) the "Angand licence":
  *    This software may be copied and distributed for educational, research,
  *    and not for profit purposes provided that this copyright and statement
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "cmds.h"
 #include "files.h"
@@ -25,6 +25,7 @@
 #include "monster/monster.h"
 #include "ui-menu.h"
 #include "wizard.h"
+#include "powers.c"
 
 /*
  * This file contains (several) big lists of commands, so that they can be
@@ -150,6 +151,7 @@ static struct generic_command cmd_info[] =
 	{ "Gain new spells", 'G', CMD_STUDY_BOOK, textui_obj_study, player_can_study },
 	{ "Cast a spell", 'm', CMD_CAST, textui_obj_cast, player_can_cast },
 	{ "Cast a spell", 'p', CMD_CAST, textui_obj_cast, player_can_cast },
+	{ "Use racial power", 'U', CMD_USE_RACIAL_POWER, do_cmd_monster_power },
 	{ "Full dungeon map",             'M', CMD_NULL, do_cmd_view_map },
 	{ "Display visible item list",    ']', CMD_NULL, do_cmd_itemlist },
 	{ "Display visible monster list", '[', CMD_NULL, do_cmd_monlist },

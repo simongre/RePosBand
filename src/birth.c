@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cmds.h"
 #include "files.h"
 #include "game-event.h"
@@ -36,7 +36,7 @@
  * the file - that is the only external entry point to the functions
  * defined here.
  *
- * Player (in the Angband sense of character) birth is modelled as a
+ * Player (in the reposband sense of character) birth is modelled as a
  * a series of commands from the UI to the game to manipulate the
  * character and corresponding events to inform the UI of the outcomes
  * of these changes.
@@ -601,6 +601,27 @@ void player_outfit(struct player *p)
 			/* Deduct the cost of the item from starting cash */
 			p->au -= object_value(i_ptr, i_ptr->number, FALSE);
 		}
+		
+		/* Repeat for item at slot "i" in racial starting EQ -Simon */
+		/* Access the item */
+		e_ptr = &(rp_ptr->start_items[i]);
+
+		/* Get local object */
+		i_ptr = &object_type_body;
+
+		/* Hack	-- Give the player an object */
+		if (e_ptr->kind)
+		{
+			/* Prepare the item */
+			object_prep(i_ptr, e_ptr->kind, 0, MINIMISE);
+			i_ptr->number = (byte)rand_range(e_ptr->min, e_ptr->max);
+			i_ptr->origin = ORIGIN_BIRTH;
+
+			object_flavor_aware(i_ptr);
+			object_notice_everything(i_ptr);
+			inven_carry(p, i_ptr);
+			e_ptr->kind->everseen = TRUE;
+		}
 	}
 
 
@@ -1097,7 +1118,11 @@ void player_birth(bool quickstart_allowed)
 		}
 		else if (cmd->command == CMD_CHOOSE_CLASS)
 		{
-			p_ptr->pclass = cmd->arg[0].choice;
+			/* test to see if player is a monster; if so then make them monster class -Simon */
+			/* TODO: Change "11" and "6" into constants like MAX_CLASSIC_RACES */
+			if(p_ptr->prace >= 11)
+				p_ptr->pclass = 6;
+			else p_ptr->pclass = cmd->arg[0].choice;
 			player_generate(p_ptr, NULL, NULL, NULL);
 
 			reset_stats(stats, points_spent, &points_left);

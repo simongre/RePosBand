@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "game-event.h"
 #include "game-cmd.h"
 #include "object/tvalsval.h"
@@ -75,7 +75,7 @@ int distance(int y1, int x1, int y2, int x2)
  * some special checks to avoid testing grids which are "brushed" but not
  * actually "entered".
  *
- * Angband three different "line of sight" type concepts, including this
+ * reposband three different "line of sight" type concepts, including this
  * function (which is used almost nowhere), the "project()" method (which
  * is used for determining the paths of projectables and spells and such),
  * and the "update_view()" concept (which is used to determine which grids
@@ -836,7 +836,9 @@ void grid_data_as_text(grid_data *g, byte *ap, char *cp, byte *tap, char *tcp)
 		monster_race *r_ptr = &r_info[0];
 
 		/* Get the "player" attr */
-		a = r_ptr->x_attr;
+		//a = r_ptr->x_attr;
+		/* Changed to look up what monster the player's supposed to look like, might bug out for races without M: (i.e. normal races -Simon */
+		a = r_info[rp_ptr->p_monster_index].x_attr;
 		if ((OPT(hp_changes_color)) && (arg_graphics == GRAPHICS_NONE))
 		{
 			switch(p_ptr->chp * 10 / p_ptr->mhp)
@@ -881,7 +883,9 @@ void grid_data_as_text(grid_data *g, byte *ap, char *cp, byte *tap, char *tcp)
 		}
 
 		/* Get the "player" char */
-		c = r_ptr->x_char;
+		//c = r_ptr->x_char;
+		/* As above, changed for reposband */
+		c = r_info[rp_ptr->p_monster_index].x_char;
 	}
 
 	/* Result */
@@ -1070,9 +1074,9 @@ static void move_cursor_relative_map(int y, int x)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;
@@ -1171,9 +1175,9 @@ static void print_rel_map(char c, byte a, int y, int x)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;
@@ -1378,9 +1382,9 @@ static void prt_map_aux(void)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;
@@ -1767,7 +1771,7 @@ void do_cmd_view_map(void)
 /*
  * Some comments on the dungeon related data structures and functions...
  *
- * Angband is primarily a dungeon exploration game, and it should come as
+ * reposband is primarily a dungeon exploration game, and it should come as
  * no surprise that the internal representation of the dungeon has evolved
  * over time in much the same way as the game itself, to provide semantic
  * changes to the game itself, to make the code simpler to understand, and
@@ -1783,12 +1787,12 @@ void do_cmd_view_map(void)
  * the list of monsters currently inhabiting the level.  And some of the
  * information only applies to a single grid of the current dungeon level,
  * such as whether the grid is illuminated, or whether the grid contains a
- * monster, or whether the grid can be seen by the player.  If Angband was
+ * monster, or whether the grid can be seen by the player.  If reposband was
  * to be turned into a multi-player game, some of the information currently
  * associated with the dungeon should really be associated with the player,
  * such as whether a given grid is viewable by a given player.
  *
- * One of the major bottlenecks in ancient versions of Angband was in the
+ * One of the major bottlenecks in ancient versions of reposband was in the
  * calculation of "line of sight" from the player to various grids, such
  * as those containing monsters, using the relatively expensive "los()"
  * function.  This was such a nasty bottleneck that a lot of silly things
@@ -1952,7 +1956,7 @@ void do_cmd_view_map(void)
  * is in the "field of view" of the player and which is also "illuminated",
  * either by the players torch (if any) or by any permanent light source.
  * It could use and help maintain information about multiple light sources,
- * which would be helpful in a multi-player version of Angband.
+ * which would be helpful in a multi-player version of reposband.
  *
  * The "update_view()" function maintains the special "view_g" array, which
  * contains exactly those grids which have the "CAVE_VIEW" flag set.  This

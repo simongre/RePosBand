@@ -1,9 +1,9 @@
 /** @file main-test.c
  *  @brief Pseudo-UI for end-to-end testing.
- *  @author Elly <elly+angband@leptoquark.net>
+ *  @author Elly <elly+reposband@leptoquark.net>
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "birth.h"
 
 static int prompt = 0;
@@ -299,7 +299,7 @@ static void term_data_link(int i) {
 
 	Term_activate(t);
 
-	angband_term[i] = t;
+	reposband_term[i] = t;
 }
 
 const char help_test[] = "Test mode, subopts -p(rompt)";

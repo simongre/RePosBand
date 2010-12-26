@@ -2,7 +2,7 @@
  * File: obj-make.c
  * Purpose: Object generation functions.
  *
- * Copyright (c) 1987-2007 Angband contributors
+ * Copyright (c) 1987-2007 reposband contributors
  *
  * This work is free software; you can redistribute it and/or modify it
  * under the terms of either:
@@ -15,7 +15,7 @@
  *    and not for profit purposes provided that this copyright and statement
  *    are included in all such copies.  Other copyrights may also apply.
  */
-#include "angband.h"
+#include "reposband.h"
 #include "tvalsval.h"
 
 

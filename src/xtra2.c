@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cmds.h"
 #include "history.h"
 #include "macro.h"
@@ -90,6 +90,20 @@ void check_experience(void)
 		strnfmt(buf, sizeof(buf), "Reached level %d", p_ptr->lev);
 		history_add(buf, HISTORY_GAIN_LEVEL, 0);
 
+		/* Evolve -Simon */
+		if ((p_ptr->lev >= rp_ptr->max_level) && (rp_ptr->next_form_index >= 0))
+		{
+			p_ptr->prace = rp_ptr->next_form_index;
+			rp_ptr = &p_info[p_ptr->prace];
+			p_ptr->expfact = rp_ptr->r_exp + cp_ptr->c_exp;
+			p_ptr->hitdie = rp_ptr->r_mhp + cp_ptr->c_mhp;
+			do_cmd_redraw();
+			msg_format("You transform into a %^s!", p_info[p_ptr->prace].name);
+			check_experience();
+			if (p_ptr->lev < p_ptr->max_lev && p_ptr->exp == p_ptr->max_exp)
+				msg_format("You don't have enough XP to be level %d in this form!", p_ptr->max_lev);
+		}		
+		
 		/* Message */
 		message_format(MSG_LEVEL, p_ptr->lev, "Welcome to level %d.",
 			p_ptr->lev);
@@ -97,7 +111,7 @@ void check_experience(void)
 		/* Add to social class */
 		p_ptr->sc += randint1(2);
 		if (p_ptr->sc > 150) p_ptr->sc = 150;
-
+				
 		/* Update some stuff */
 		p_ptr->update |= (PU_BONUS | PU_HP | PU_MANA | PU_SPELLS);
 
@@ -222,12 +236,12 @@ bool adjust_panel(int y, int x)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
 		int wx, wy;
 		int screen_hgt, screen_wid;
 
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;
@@ -268,12 +282,12 @@ bool change_panel(int dir)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
 		int screen_hgt, screen_wid;
 		int wx, wy;
 
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;
@@ -330,9 +344,9 @@ void verify_panel_int(bool centered)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
-		term *t = angband_term[j];
+		term *t = reposband_term[j];
 
 		/* No window */
 		if (!t) continue;

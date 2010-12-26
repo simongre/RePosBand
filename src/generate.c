@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "files.h"
 #include "monster/monster.h"
@@ -99,7 +99,7 @@
  * and both make 16 "expensive" calls to the "get_mon_num()" function.
  *
  * Note that the cave grid flags changed in a rather drastic manner
- * for Angband 2.8.0 (and 2.7.9+), in particular, dungeon terrain
+ * for reposband 2.8.0 (and 2.7.9+), in particular, dungeon terrain
  * features, such as doors and stairs and traps and rubble and walls,
  * are all handled as a set of 64 possible "terrain features", and
  * not as "fake" objects (440-479) as in pre-2.8.0 versions.

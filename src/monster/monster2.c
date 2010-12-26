@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "generate.h"
 #include "history.h"
@@ -561,7 +561,7 @@ void display_monlist(void)
 
 	u16b *order;
 
-	bool in_term = (Term != angband_term[0]);
+	bool in_term = (Term != reposband_term[0]);
 
 	/* Hallucination is weird */
 	if (p_ptr->timed[TMD_IMAGE])

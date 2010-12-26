@@ -13,7 +13,7 @@
 #include <nds.h>
 #include <fat.h>
 
-#include "angband.h"
+#include "reposband.h"
 #include "main.h"
 
 /* DS includes */
@@ -63,7 +63,7 @@ s16 nds_buttons_to_btnid(u16 kd, u16 kh) {
 
 #define DEF_TILE_WIDTH		8
 #define DEF_TILE_HEIGHT		8
-#define DEF_TILE_FILE		"/angband/lib/xtra/graf/8x8.bmp"
+#define DEF_TILE_FILE		"/reposband/lib/xtra/graf/8x8.bmp"
 #define DEF_TILES_PER_ROW       32
 
 // don't change these
@@ -247,7 +247,7 @@ static void pixel_to_square(int * const x, int * const y,
  */
 static void handle_touch(int x, int y, int button, bool press)
 {
-	/* The co-ordinates are only used in Angband format. */
+	/* The co-ordinates are only used in reposband format. */
 	pixel_to_square(&x, &y, x, y);
 
 	if (press) Term_mousepress(x, y, button);
@@ -1290,7 +1290,7 @@ errr init_nds(void)
       none = FALSE;
       
       /* Set global pointer */
-      angband_term[0] = Term;
+      reposband_term[0] = Term;
     }
   
   if (none) return (1);
@@ -1310,13 +1310,13 @@ static void init_stuff(void)
 	char path[1024];
 
 	/* Prepare the path */
-	strcpy(path, "/angband/lib/");
+	strcpy(path, "/reposband/lib/");
 
 	/* Prepare the filepaths */
 	init_file_paths(path, path, path);
 
 	/* Hack */
-	strcpy(savefile, "/angband/lib/save/PLAYER");
+	strcpy(savefile, "/reposband/lib/save/PLAYER");
 
 	//small_screen = TRUE;
 }
@@ -1754,7 +1754,7 @@ int main(int argc, char *argv[])
   swiWaitForVBlank();
   swiWaitForVBlank();
   
-  chdir("/angband");
+  chdir("/reposband");
   if (!nds_load_kbd()) 
     {
       nds_fatal_err("\nError loading keyboard graphics.\nCannot continue.\n");
@@ -1770,13 +1770,13 @@ int main(int argc, char *argv[])
     {	// it's a DS lite
       swap_font(false);
     } 
-  else if (access("/angband/swapfont",04) != -1) 
+  else if (access("/reposband/swapfont",04) != -1) 
     {
       swap_font(false);
     }
   
   use_graphics = TRUE;
-  //ANGBAND_GRAF = "old";
+  //reposband_GRAF = "old";
 
   //NRM	initoptions();
   if (!nds_load_tiles()) 
@@ -1883,7 +1883,7 @@ int main(int argc, char *argv[])
   if (init_nds()) quit("Oops!");
   
   /* XXX XXX XXX */
-  ANGBAND_SYS = "nds";
+  reposband_SYS = "nds";
   
   /* Initialize some stuff */
   init_stuff();
@@ -1899,7 +1899,7 @@ int main(int argc, char *argv[])
   while (game_start)
     {
       /* Initialize */
-      init_angband();
+      init_reposband();
 
       for (i = 0; i < 50; i++)
 	draw_tile(i % 10, i/10, i+600);      
@@ -1910,7 +1910,7 @@ int main(int argc, char *argv[])
       play_game(new_game);
       
       /* Free resources */
-      cleanup_angband();
+      cleanup_reposband();
     }
   
   /* Quit */

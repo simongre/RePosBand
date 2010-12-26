@@ -275,7 +275,7 @@ struct term
 
 
 /*
- * Angband "attributes" (with symbols, and base (R,G,B) codes)
+ * reposband "attributes" (with symbols, and base (R,G,B) codes)
  *
  * The "(R,G,B)" codes are given in "fourths" of the "maximal" value,
  * and should "gamma corrected" on most (non-Macintosh) machines.
@@ -326,7 +326,7 @@ struct term
 #define MAX_ATTR        9
 
 /*
- * Maximum number of colours, and number of "basic" Angband colours
+ * Maximum number of colours, and number of "basic" reposband colours
  */ 
 #define MAX_COLORS        256
 #define BASIC_COLORS    28

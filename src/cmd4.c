@@ -18,7 +18,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "cmds.h"
 #include "externs.h"
@@ -101,13 +101,13 @@ void do_cmd_redraw(void)
 
 
 	/* Redraw every window */
-	for (j = 0; j < ANGBAND_TERM_MAX; j++)
+	for (j = 0; j < reposband_TERM_MAX; j++)
 	{
 		/* Dead window */
-		if (!angband_term[j]) continue;
+		if (!reposband_term[j]) continue;
 
 		/* Activate */
-		Term_activate(angband_term[j]);
+		Term_activate(reposband_term[j]);
 
 		/* Redraw */
 		Term_redraw();
@@ -574,7 +574,7 @@ void do_cmd_load_screen(void)
 
 
 	/* Build the filename */
-	path_build(buf, 1024, ANGBAND_DIR_USER, "dump.txt");
+	path_build(buf, 1024, reposband_DIR_USER, "dump.txt");
 	fp = file_open(buf, MODE_READ, -1);
 	if (!fp) return;
 
@@ -660,7 +660,7 @@ static void do_cmd_save_screen_text(void)
 	char buf[1024];
 
 	/* Build the filename */
-	path_build(buf, 1024, ANGBAND_DIR_USER, "dump.txt");
+	path_build(buf, 1024, reposband_DIR_USER, "dump.txt");
 	fff = file_open(buf, MODE_WRITE, FTYPE_TEXT);
 	if (!fff) return;
 
@@ -756,7 +756,7 @@ static void do_cmd_save_screen_html(int mode)
 	if (!get_string("File: ", tmp_val, sizeof(tmp_val))) return;
 
 	/* Save current preferences */
-	path_build(file_name, 1024, ANGBAND_DIR_USER, "dump.prf");
+	path_build(file_name, 1024, reposband_DIR_USER, "dump.prf");
 	fff = file_open(file_name, MODE_WRITE, (mode == 0 ? FTYPE_HTML : FTYPE_TEXT));
 
 	/* Check for failure */

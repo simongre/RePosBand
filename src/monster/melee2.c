@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "monster/constants.h"
 #include "monster/monster.h"
@@ -779,7 +779,7 @@ bool make_attack_spell(int m_idx)
 
 		case RSF_ARROW_1:
 		{
-			bool hits = check_hit(ARROW1_HIT, rlev);
+			bool hits = check_hit(ARROW1_HIT, rlev, m_idx);
 			int dam = ARROW1_DMG(rlev, RANDOMISE);
 			disturb(1, 0);
 
@@ -795,7 +795,7 @@ bool make_attack_spell(int m_idx)
 
 		case RSF_ARROW_2:
 		{
-			bool hits = check_hit(ARROW2_HIT, rlev);
+			bool hits = check_hit(ARROW2_HIT, rlev, m_idx);
 			int dam = ARROW2_DMG(rlev, RANDOMISE);
 			disturb(1, 0);
 
@@ -811,7 +811,7 @@ bool make_attack_spell(int m_idx)
 
 		case RSF_ARROW_3:
 		{
-			bool hits = check_hit(ARROW3_HIT, rlev);
+			bool hits = check_hit(ARROW3_HIT, rlev, m_idx);
 			int dam = ARROW3_DMG(rlev, RANDOMISE);
 			disturb(1, 0);
 
@@ -827,7 +827,7 @@ bool make_attack_spell(int m_idx)
 
 		case RSF_ARROW_4:
 		{
-			bool hits = check_hit(ARROW4_HIT, rlev);
+			bool hits = check_hit(ARROW4_HIT, rlev, m_idx);
 			int dam = ARROW4_DMG(rlev, RANDOMISE);
 			disturb(1, 0);
 
@@ -1053,7 +1053,7 @@ bool make_attack_spell(int m_idx)
 
 		case RSF_BOULDER:
 		{
-			bool hits = check_hit(BOULDER_HIT, rlev);
+			bool hits = check_hit(BOULDER_HIT, rlev, m_idx);
 			int dam = BOULDER_DMG(rlev, RANDOMISE);
 			disturb(1, 0);
 

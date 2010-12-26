@@ -16,7 +16,7 @@
  *    are included in all such copies.  Other copyrights may also apply.
  */
 
-#include "angband.h"
+#include "reposband.h"
 #include "cave.h"
 #include "history.h"
 #include "monster/monster.h"
@@ -332,8 +332,8 @@ int rd_options(u32b version)
 
 	u32b flag[8];
 	u32b mask[8];
-	u32b window_flag[ANGBAND_TERM_MAX];
-	u32b window_mask[ANGBAND_TERM_MAX];
+	u32b window_flag[reposband_TERM_MAX];
+	u32b window_mask[reposband_TERM_MAX];
 
 
 	/*** Oops ***/
@@ -387,19 +387,19 @@ int rd_options(u32b version)
 	/*** Window Options ***/
 
 	/* Read the window flags */
-	for (n = 0; n < ANGBAND_TERM_MAX; n++)
+	for (n = 0; n < reposband_TERM_MAX; n++)
 	{
 		rd_u32b(&window_flag[n]);
 	}
 
 	/* Read the window masks */
-	for (n = 0; n < ANGBAND_TERM_MAX; n++)
+	for (n = 0; n < reposband_TERM_MAX; n++)
 	{
 		rd_u32b(&window_mask[n]);
 	}
 
 	/* Analyze the options */
-	for (n = 0; n < ANGBAND_TERM_MAX; n++)
+	for (n = 0; n < reposband_TERM_MAX; n++)
 	{
 		/* Analyze the options */
 		for (i = 0; i < 32; i++)
@@ -417,7 +417,7 @@ int rd_options(u32b version)
 	}
 
 	/* Set up the subwindows */
-	subwindows_set_flags(window_flag, ANGBAND_TERM_MAX);
+	subwindows_set_flags(window_flag, reposband_TERM_MAX);
 
 	return 0;
 }
