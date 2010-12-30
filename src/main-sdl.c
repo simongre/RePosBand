@@ -306,8 +306,8 @@ static bool popped;
 /*
  * Term windows
  */
-static term_window windows[reposband_TERM_MAX];
-static int Zorder[reposband_TERM_MAX];
+static term_window windows[REPOSBAND_TERM_MAX];
+static int Zorder[REPOSBAND_TERM_MAX];
 
 /* Keep track of the mouse status */
 static mouse_info mouse;
@@ -1083,7 +1083,7 @@ static void hook_quit(cptr str)
 	string_free(reposband_DIR_USER_SDL);
 	
 	/* Free the surfaces of the windows */
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		term_windowFree(&windows[i]);
 		string_free(windows[i].req_font);
@@ -1119,19 +1119,19 @@ static void BringToTop(void)
 {
 	int i, idx;
 	
-	for (idx = 0; idx < reposband_TERM_MAX; idx++)
+	for (idx = 0; idx < REPOSBAND_TERM_MAX; idx++)
 	{
 		if (Zorder[idx] == SelectedTerm) break;
 	}
 	
-	if (idx == reposband_TERM_MAX) return;
+	if (idx == REPOSBAND_TERM_MAX) return;
 	
-	for (i = idx; i < reposband_TERM_MAX - 1; i++)
+	for (i = idx; i < REPOSBAND_TERM_MAX - 1; i++)
 	{
 		Zorder[i] = Zorder[i + 1];
 	}
 	
-	Zorder[reposband_TERM_MAX - 1] = SelectedTerm;
+	Zorder[REPOSBAND_TERM_MAX - 1] = SelectedTerm;
 }
 
 	
@@ -1154,7 +1154,7 @@ static int sdl_LocateWin(int x, int y)
 {
 	int i;
 	
-	for (i = reposband_TERM_MAX - 1; i >= 0; i--)
+	for (i = REPOSBAND_TERM_MAX - 1; i >= 0; i--)
 	{
 		term_window *win = &windows[Zorder[i]];
 		SDL_Rect rc;
@@ -1249,7 +1249,7 @@ static void sdl_BlitAll(void)
 	/* int32 ccolour = SDL_MapRGB(AppWin->format, 160, 40, 40); */
 	SDL_FillRect(AppWin, NULL, back_colour);
 	
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		term_window *win = &windows[Zorder[i]];
 		
@@ -1378,9 +1378,9 @@ static void SelectTerm(sdl_Button *sender)
 static void TermActivate(sdl_Button *sender)
 {
 	int i, maxl = 0; 
-	int width, height = reposband_TERM_MAX * (StatusBar.font.height + 1);
+	int width, height = REPOSBAND_TERM_MAX * (StatusBar.font.height + 1);
 
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		int l = strlen(reposband_term_name[i]); 
 		if (l > maxl) maxl = l;
@@ -1392,7 +1392,7 @@ static void TermActivate(sdl_Button *sender)
 	PopUp.left = sender->pos.x;
 	PopUp.top = sender->pos.y;
 	
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		int h = PopUp.font.height;
 		int b = sdl_ButtonBankNew(&PopUp.buttons);
@@ -1535,7 +1535,7 @@ static void AcceptChanges(sdl_Button *sender)
 	if (do_update)
 	{
 		int i;
-		for (i = 0; i < reposband_TERM_MAX; i++)
+		for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 		{
 			term_window *win = &windows[i];
 			if (win->tiles)
@@ -1948,7 +1948,7 @@ static errr load_prefs(void)
 	int i;
 	
 	/* Initialize the windows with crappy defaults! */
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		win = &windows[i];
 		
@@ -2102,7 +2102,7 @@ static errr save_prefs(void)
 	file_putf(fff, "TileWidth = %d\n\n", tile_width);
         file_putf(fff, "TileHeight = %d\n\n", tile_height);
 	
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		term_window *win = &windows[i];
 		
@@ -2197,7 +2197,7 @@ static void sdl_HandleMouseEvent(SDL_Event *event)
 					Movingy = mouse.y - win->top;
 				}
 				
-				for (i = 0; i < reposband_TERM_MAX; i++)
+				for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 				{
 					term_window *snapper = &windows[i];
 					
@@ -3440,7 +3440,7 @@ static void init_windows(void)
 {
 	int i;
 	
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		term_window *win = &windows[i];
 		
@@ -3467,7 +3467,7 @@ static void init_windows(void)
 		}
 		
 		/* Term 0 is at the top */
-		Zorder[i] = reposband_TERM_MAX - i - 1;
+		Zorder[i] = REPOSBAND_TERM_MAX - i - 1;
 	}
 	
 	/* Good to go... */

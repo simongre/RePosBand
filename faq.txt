@@ -1,4 +1,4 @@
-The reposband FAQ
+The Angband FAQ
 
 The best way to get answers to your questions is to post them on the 
 forum [http://angband.oook.cz/forum].
@@ -60,7 +60,7 @@ http://angband.oook.cz/forum/showthread.php?t=26
 
 It's very likely that your console is not set to display 256 colours. Try
 setting the TERM environment variable to "xterm-256color" in your shell
-before starting reposband (in bash this is "export TERM=xterm-256color").
+before starting Angband (in bash this is "export TERM=xterm-256color").
 
 1g. I'm playing in a terminal and the Escape key isn't working as it 
 should - I have to press it twice, or just wait a while.
@@ -100,11 +100,11 @@ The developers keep an eye on r.g.r.a and the forums, and ideas deemed
 OK will get filed for future implementation.
 
 Sometimes a suggestion may not be right for the game, though. Some 
-suggestions would change aspects of reposband that are essential to its 
-nature; reposband has a long history, and so has developed a certain 
+suggestions would change aspects of Angband that are essential to its 
+nature; Angband has a long history, and so has developed a certain 
 character over the years.  Some suggestions might make a good game, 
-perhaps even a better game than reposband, but would make a game that is 
-not reposband. To some extent, variants exist to address this, but even 
+perhaps even a better game than Angband, but would make a game that is 
+not Angband. To some extent, variants exist to address this, but even 
 so they tend to adhere to the core Angand principles.
 
 2c. How do I get a copy of the source code?
@@ -112,7 +112,7 @@ so they tend to adhere to the core Angand principles.
 The latest release's source is linked to from the page http://rephial.org/.
 
 To get the bleeding-edge development code, clone the git repository at 
-git://github.com/reposband/reposband.git
+git://github.com/Angband/Angband.git
 
 2d. How do I compile the game?
 
@@ -121,13 +121,13 @@ Please see http://rephial.org/wiki/Compiling for an up-to-date guide to this.
 2e. How do I contribute to the game?
 
 First, join the mailing list 
-[http://angband.oook.cz/mailman/listinfo/reposband-dev] and/or drop by
-#reposband-dev on freenode IRC.
+[http://angband.oook.cz/mailman/listinfo/Angband-dev] and/or drop by
+#Angband-dev on freenode IRC.
 
 If you already have a patch you want to be included, please send it to 
 the mailing list in the form of a unified diff against either the git master
 branch (e.g. using git diff) or the latest public release. Please be 
-careful to follow the reposband coding guidelines 
+careful to follow the Angband coding guidelines 
 [http://trac.rephial.org/wiki/CodingGuidelines]. All contributions to 
 individual files are accepted under the licences used in the file 
 header. Make sure you're OK with this before sending in patches.
@@ -136,7 +136,7 @@ If the patch is a bugfix, then you can reasonably expect it to be
 integrated into the development tree. If it's more involved, and the 
 feature is not one that the next version is planned to have, the patch 
 may go through several reviews before being incorporated. It may also 
-just be unsuitable for reposband - in which case, please don't take 
+just be unsuitable for Angband - in which case, please don't take 
 rejection badly; you may just be better off writing a variant.
 
 Non-code activites are different. Documentation can be written on the 

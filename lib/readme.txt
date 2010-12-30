@@ -1,4 +1,4 @@
-The "lib" directory contains all of reposband's special sub-directories.
+The "lib" directory contains all of Angband's special sub-directories.
 
 
 === Directory "lib/apex" ===
@@ -36,7 +36,7 @@ The "lib/file" directory contains various special ascii data files.
 The 'news.txt' file is displayed to the user when the game starts up.  It
 contains basic information such as my name and email address, and the names
 of some of the people who have been responsible for previous versions of
-reposband.  You may edit this file (slightly) to include local "site specific"
+Angband.  You may edit this file (slightly) to include local "site specific"
 information such as who compiled the local executable.  You should refer the
 user to a special "online help" file, if necessary, that describes any local
 modifications in detail.  The first two lines of this file should be blank,

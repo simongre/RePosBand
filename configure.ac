@@ -1,5 +1,9 @@
 dnl Process this file with autoconf to produce a configure script.
+<<<<<<< HEAD
 AC_INIT([reposband], [3.1.2], [bugs@rephial.org], [reposband])
+=======
+AC_INIT([Angband], [3.2.0], [bugs@rephial.org], [angband])
+>>>>>>> 3015a7677d044c178bb49aac9035e0a6ff588b76
 AC_PREREQ([2.59])
 
 AC_CONFIG_HEADER(src/autoconf.h)

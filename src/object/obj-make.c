@@ -334,7 +334,7 @@ static bool make_artifact_special(object_type *o_ptr, int level)
 
 
 	/* No artifacts, do nothing */
-	if (OPT(adult_no_artifacts)) return (FALSE);
+	if (OPT(birth_no_artifacts)) return (FALSE);
 
 	/* No artifacts in the town */
 	if (!p_ptr->depth) return (FALSE);
@@ -416,7 +416,7 @@ static bool make_artifact(object_type *o_ptr)
 
 
 	/* No artifacts, do nothing */
-	if (OPT(adult_no_artifacts) &&
+	if (OPT(birth_no_artifacts) &&
 	    o_ptr->name1 != ART_GROND &&
 	    o_ptr->name1 != ART_MORGOTH)
 		return (FALSE);
@@ -1315,10 +1315,9 @@ void make_gold(object_type *j_ptr, int lev, int coin_type)
 	s32b spread = lev + 10;
 	s32b value = rand_spread(avg, spread);
 
-	/* Increase variance to infinity, retain same mean */
-	while (one_in_(2) && (value * 1414) / 1000 <= MAX_SHORT) /* 1414/1000 = sqrt(2) */
-		value = (value * 1414) / 1000;
-	value = (value * 414) / 1414;
+	/* Increase the range to infinite, moving the average to 110% */
+	while (one_in_(100) && value * 10 <= MAX_SHORT)
+		value *= 10;
 
 	/* Pick a treasure variety scaled by level, or force a type */
 	if (coin_type != SV_GOLD_ANY)
@@ -1334,7 +1333,7 @@ void make_gold(object_type *j_ptr, int lev, int coin_type)
 	object_prep(j_ptr, &k_info[k_idx], lev, RANDOMISE);
 
 	/* If we're playing with no_selling, increase the value */
-	if (OPT(adult_no_selling)) value = 5 * value;
+	if (OPT(birth_no_selling)) value = 5 * value;
 
 	j_ptr->pval = value;
 }

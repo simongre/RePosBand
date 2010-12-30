@@ -1157,7 +1157,7 @@ void toggle_inven_equip(void)
 	flip_inven = !flip_inven;
 
 	/* Redraw any subwindows showing the inventory/equipment lists */
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		Term_activate(reposband_term[i]); 
 
@@ -1302,7 +1302,7 @@ static struct minimap_flags
 {
 	int win_idx;
 	bool needs_redraw;
-} minimap_data[reposband_TERM_MAX];
+} minimap_data[REPOSBAND_TERM_MAX];
 
 static void update_minimap_subwindow(game_event_type type, game_event_data *data, void *user)
 {
@@ -1818,4 +1818,16 @@ void init_display(void)
 	event_add_handler(EVENT_LEAVE_GAME, ui_leave_game, NULL);
 
 	ui_init_birthstate_handlers();
+}
+
+
+/* Return a random hint from the global hints list */
+char* random_hint(void)
+{
+	struct hint *v, *r = NULL;
+	int n;
+	for (v = hints, n = 1; v; v = v->next, n++)
+		if (one_in_(n))
+			r = v;
+	return r->hint;
 }

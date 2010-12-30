@@ -36,13 +36,13 @@
 /*
  * Name of the version/variant and its version string
  */
-#define VERSION_NAME   "reposband"
+#define VERSION_NAME   "Reposband"
 #define SAVEFILE_NAME  "REPOS"
 
 #ifdef BUILD_ID
-# define VERSION_STRING "0.5 (" BUILD_ID ")"
+# define VERSION_STRING "0.5.3 (" BUILD_ID ")"
 #else
-# define VERSION_STRING "0.5"
+# define VERSION_STRING "0.5.3"
 #endif
 
 
@@ -122,7 +122,7 @@
 /*
  * Maximum amount of reposband windows.
  */
-#define reposband_TERM_MAX 8
+#define REPOSBAND_TERM_MAX 8
 
 
 
@@ -141,7 +141,10 @@
 #define DEMIHUMAN_CLASS_MAX	5
 
 /* # of races that show up on the race select screen */
-#define SELECTABLE_RACE_MAX	13
+#define SELECTABLE_RACE_MAX	16
+
+/* most # of forms that monster race can branch into at one junction */
+#define MAX_NEXT_FORMS	5
 
 /*
  * Maximum number of powers any race can have -Simon

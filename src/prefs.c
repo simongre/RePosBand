@@ -219,7 +219,7 @@ void option_dump(ang_file *fff)
 	}
 
 	/* Dump window flags */
-	for (i = 1; i < reposband_TERM_MAX; i++)
+	for (i = 1; i < REPOSBAND_TERM_MAX; i++)
 	{
 		/* Require a real window */
 		if (!reposband_term[i]) continue;
@@ -1123,7 +1123,7 @@ static enum parser_error parse_prefs_w(struct parser *p)
 	if (d->bypass) return PARSE_ERROR_NONE;
 
 	window = parser_getint(p, "window");
-	if (window <= 0 || window >= reposband_TERM_MAX)
+	if (window <= 0 || window >= REPOSBAND_TERM_MAX)
 		return PARSE_ERROR_OUT_OF_BOUNDS;
 
 	flag = parser_getuint(p, "flag");

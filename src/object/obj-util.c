@@ -393,7 +393,35 @@ char index_to_label(int i)
 	if (i < INVEN_WIELD) return (I2A(i));
 
 	/* Indexes for "equip" are offset */
-	return (I2A(i - INVEN_WIELD));
+	else
+	{
+		/* Super convert -Simon */
+		if (i >= (INVEN_FEET + rp_ptr->boot_slots))
+			i -= (INVEN_TOTAL - INVEN_FEET - rp_ptr->boot_slots);
+		if (i >= (INVEN_HANDS + rp_ptr->glove_slots))
+			i -= (INVEN_FEET - INVEN_HANDS - rp_ptr->glove_slots);
+		if (i >= (INVEN_HEAD + rp_ptr->helm_slots))
+			i -= (INVEN_HANDS - INVEN_HEAD - rp_ptr->helm_slots);
+		if (i >= (INVEN_ARM + rp_ptr->shield_slots))
+			i -= (INVEN_HEAD - INVEN_ARM - rp_ptr->shield_slots);
+		if (i >= (INVEN_OUTER + rp_ptr->cloak_slots))
+			i -= (INVEN_ARM - INVEN_OUTER - rp_ptr->cloak_slots);
+		if (i >= (INVEN_BODY + rp_ptr->body_slots))
+			i -= (INVEN_OUTER - INVEN_BODY - rp_ptr->body_slots);
+		if (i >= (INVEN_LIGHT + rp_ptr->light_slots))
+			i -= (INVEN_BODY - INVEN_LIGHT - rp_ptr->light_slots);
+		if (i >= (INVEN_NECK + rp_ptr->amulet_slots))
+			i -= (INVEN_LIGHT - INVEN_NECK - rp_ptr->amulet_slots);
+		if (i >= (INVEN_FINGER + rp_ptr->ring_slots))
+			i -= (INVEN_NECK - INVEN_FINGER - rp_ptr->ring_slots);
+		if (i >= (INVEN_BOW + rp_ptr->range_slots))
+			i -= (INVEN_FINGER - INVEN_BOW - rp_ptr->range_slots);
+		if (i >= (INVEN_WIELD + rp_ptr->melee_slots))
+			i -= (INVEN_BOW - INVEN_WIELD - rp_ptr->melee_slots);
+		if (i >= INVEN_WIELD)
+			i -= INVEN_WIELD;
+		return (I2A(i));
+	}
 }
 
 
@@ -430,7 +458,31 @@ s16b label_to_equip(int c)
 	int i;
 
 	/* Convert */
-	i = (islower((unsigned char)c) ? A2I(c) : -1) + INVEN_WIELD;
+	i = A2I(c) + INVEN_WIELD; //(islower((unsigned char)c) ? A2I(c) : -1) + INVEN_WIELD;
+	
+	/* Super convert -Simon */
+	if (i >= (INVEN_WIELD + rp_ptr->melee_slots))
+		i += (INVEN_BOW - INVEN_WIELD - rp_ptr->melee_slots);
+	if (i >= (INVEN_BOW + rp_ptr->range_slots))
+		i += (INVEN_FINGER - INVEN_BOW - rp_ptr->range_slots);
+	if (i >= (INVEN_FINGER + rp_ptr->ring_slots))
+		i += (INVEN_NECK - INVEN_FINGER - rp_ptr->ring_slots);
+	if (i >= (INVEN_NECK + rp_ptr->amulet_slots))
+		i += (INVEN_LIGHT - INVEN_NECK - rp_ptr->amulet_slots);
+	if (i >= (INVEN_LIGHT + rp_ptr->light_slots))
+		i += (INVEN_BODY - INVEN_LIGHT - rp_ptr->light_slots);
+	if (i >= (INVEN_BODY + rp_ptr->body_slots))
+		i += (INVEN_OUTER - INVEN_BODY - rp_ptr->body_slots);
+	if (i >= (INVEN_OUTER + rp_ptr->cloak_slots))
+		i += (INVEN_ARM - INVEN_OUTER - rp_ptr->cloak_slots);
+	if (i >= (INVEN_ARM + rp_ptr->shield_slots))
+		i += (INVEN_HEAD - INVEN_ARM - rp_ptr->shield_slots);
+	if (i >= (INVEN_HEAD + rp_ptr->helm_slots))
+		i += (INVEN_HANDS - INVEN_HEAD - rp_ptr->helm_slots);
+	if (i >= (INVEN_HANDS + rp_ptr->glove_slots))
+		i += (INVEN_FEET - INVEN_HANDS - rp_ptr->glove_slots);
+	if (i >= (INVEN_FEET + rp_ptr->boot_slots))
+		i += (INVEN_TOTAL - INVEN_FEET - rp_ptr->boot_slots);
 
 	/* Verify the index */
 	if ((i < INVEN_WIELD) || (i >= ALL_INVEN_TOTAL)) return (-1);
@@ -705,7 +757,7 @@ const char *mention_use(int slot)
 			return "Shooting";
 	}
 	if ((slot >= INVEN_FINGER) && (slot < INVEN_NECK))
-		return "On limb";
+		return "Ring";
 	if ((slot >= INVEN_NECK) && (slot < INVEN_LIGHT))
 		return "Around neck";
 	if ((slot >= INVEN_LIGHT) && (slot < INVEN_BODY))
@@ -869,7 +921,7 @@ int scan_floor(int *items, int max_size, int y, int x, int mode)
 		if ((mode & 0x01) && !item_tester_okay(o_ptr)) continue;
 
 		/* Marked */
-		if ((mode & 0x02) && (!o_ptr->marked || squelch_hide_item(o_ptr)))
+		if ((mode & 0x02) && (!o_ptr->marked || squelch_item_ok(o_ptr)))
 			continue;
 
 		/* Accept this item */
@@ -1337,7 +1389,7 @@ void wipe_o_list(void)
 		/* Preserve artifacts or mark them as lost in the history */
 		if (a_ptr) {
 			/* Preserve if dungeon creation failed, or preserve mode, and only artifacts not seen */
-			if ((!character_dungeon || !OPT(adult_no_preserve)) && !object_was_sensed(o_ptr))
+			if ((!character_dungeon || !OPT(birth_no_preserve)) && !object_was_sensed(o_ptr))
 			{
 				a_ptr->created = FALSE;
 
@@ -1979,7 +2031,7 @@ static s16b floor_get_idx_oldest_squelched(int y, int x)
 	{
 		o_ptr = &o_list[this_o_idx];
 
-		if (squelch_hide_item(o_ptr))
+		if (squelch_item_ok(o_ptr))
 			squelch_idx = this_o_idx;
 	}
 
@@ -2023,7 +2075,7 @@ s16b floor_carry(int y, int x, object_type *j_ptr)
 	}
 
 	/* Option -- disallow stacking */
-	if (OPT(adult_no_stacking) && n) return (0);
+	if (OPT(birth_no_stacking) && n) return (0);
 
 	/* The stack is already too large */
 	if (n >= MAX_FLOOR_STACK)
@@ -2179,7 +2231,7 @@ void drop_near(object_type *j_ptr, int chance, int y, int x, bool verbose)
 					comb = TRUE;
 
 				/* Count objects */
-				if (!squelch_hide_item(o_ptr))
+				if (!squelch_item_ok(o_ptr))
 					k++;
 				else
 					n++;
@@ -2189,7 +2241,7 @@ void drop_near(object_type *j_ptr, int chance, int y, int x, bool verbose)
 			if (!comb) k++;
 
 			/* Option -- disallow stacking */
-			if (OPT(adult_no_stacking) && (k > 1)) continue;
+			if (OPT(birth_no_stacking) && (k > 1)) continue;
 			
 			/* Paranoia? */
 			if ((k + n) > MAX_FLOOR_STACK &&
@@ -3847,7 +3899,7 @@ void display_itemlist(void)
 				unsigned j;
 
 				/* Skip gold/squelched */
-				if (o_ptr->tval == TV_GOLD || squelch_hide_item(o_ptr))
+				if (o_ptr->tval == TV_GOLD || squelch_item_ok(o_ptr))
 					continue;
 
 				/* See if we've already seen a similar item; if so, just add */
@@ -3930,7 +3982,7 @@ void display_itemlist(void)
 		object_type *o_ptr = types[i];
 
 		/* We shouldn't list coins or squelched items */
-		if (o_ptr->tval == TV_GOLD || squelch_hide_item(o_ptr))
+		if (o_ptr->tval == TV_GOLD || squelch_item_ok(o_ptr))
 			continue;
 
 		object_desc(o_name, sizeof(o_name), o_ptr, ODESC_FULL);

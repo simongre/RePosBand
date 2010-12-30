@@ -72,6 +72,10 @@
  */
 
 #include "reposband.h"
+#include "cmds.h"
+#include "cave.h"
+#include "init.h"
+
 #define uint unsigned int
 
 #if (defined(WINDOWS) && !defined(USE_SDL))
@@ -1755,19 +1759,6 @@ static void Term_nuke_win(term *t)
 
 
 /*
- * Interact with the User
- */
-static errr Term_user_win(int n)
-{
-	/* Unused parameter */
-	(void)n;
-
-	/* Success */
-	return (0);
-}
-
-
-/*
  * React to global changes
  */
 static errr Term_xtra_win_react(void)
@@ -2665,7 +2656,6 @@ static void term_data_link(term_data *td)
 #endif /* 0 */
 
 	/* Prepare the template hooks */
-	t->user_hook = Term_user_win;
 	t->xtra_hook = Term_xtra_win;
 	t->curs_hook = Term_curs_win;
 	t->bigcurs_hook = Term_bigcurs_win;

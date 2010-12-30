@@ -41,7 +41,7 @@ const char *copyright =
 bool arg_wizard;			/* Command arg -- Request wizard mode */
 bool arg_rebalance;			/* Command arg -- Rebalance monsters */
 int arg_graphics;			/* Command arg -- Request graphics mode */
-bool arg_graphics_nice;	        /* Command arg -- Request nice graphics mode */
+bool arg_graphics_nice;			/* Command arg -- Request nice graphics mode */
 
 /*
  * Various things
@@ -117,17 +117,17 @@ bool closing_flag;		/* Dungeon is closing */
 char savefile[1024];
 
 /*
- * The array[reposband_TERM_MAX] of window pointers
+ * The array[REPOSBAND_TERM_MAX] of window pointers
  */
-term *reposband_term[reposband_TERM_MAX];
+term *reposband_term[REPOSBAND_TERM_MAX];
 
 
 /*
- * The array[reposband_TERM_MAX] of window names (modifiable?)
+ * The array[REPOSBAND_TERM_MAX] of window names (modifiable?)
  *
- * ToDo: Make the names independent of reposband_TERM_MAX.
+ * ToDo: Make the names independent of REPOSBAND_TERM_MAX.
  */
-char reposband_term_name[reposband_TERM_MAX][16] =
+char reposband_term_name[REPOSBAND_TERM_MAX][16] =
 {
 	VERSION_NAME,
 	"Term-1",
@@ -669,6 +669,10 @@ flavor_type *flavor_info;
  */
 spell_type *s_info;
 
+/*
+ * The hints array
+ */
+struct hint *hints;
 
 /*
  * The spell_list is built from s_info to facilitate a quick lookup

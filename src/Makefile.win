@@ -13,7 +13,7 @@
 #
 
 # Executable name and default target
-EXE = reposband.exe
+EXE = Reposband.exe
 all: ../$(EXE)
 
 ifneq (,$(findstring \system32,$(PATH)))

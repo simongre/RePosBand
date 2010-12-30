@@ -2,7 +2,7 @@
 
 
 # This file is used to initialize the "lib/data/p_hist.raw" file, which is
-# used to initialize the "player history" information for the reposband game.
+# used to initialize the "player history" information for the Angband game.
 
 # Do not modify this file unless you know exactly what you are doing,
 # unless you wish to risk possible system crashes and broken savefiles.

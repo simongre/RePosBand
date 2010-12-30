@@ -163,6 +163,7 @@ typedef struct player
 
 	byte confusing;		/* Glowing hands */
 	byte searching;		/* Currently searching */
+	byte unignoring;	/* Unignoring */
 
 	byte spell_flags[PY_MAX_SPELLS]; /* Spell flags */
 
@@ -211,6 +212,7 @@ typedef struct player
 	s16b resting;			/* Resting counter */
 	s16b running;			/* Running counter */
 	bool running_withpathfind;      /* Are we using the pathfinder ? */
+	bool running_firststep;  /* Is this our first step running? */
 
 	s16b run_cur_dir;		/* Direction we are running */
 	s16b run_old_dir;		/* Direction we came from */
@@ -323,7 +325,7 @@ typedef struct player_race
 	/* levels for evolution and calc'ing above bonuses -Simon */
 	byte initial_level;
 	byte max_level;
-	s16b next_form_index;
+	s16b next_form_indices[MAX_NEXT_FORMS];
 	
 	/* Index of monster used to determine player icon, melee -Simon */
 	s16b p_monster_index;
@@ -458,7 +460,7 @@ typedef struct
 	
 	bool opt[OPT_MAX];		/* Options */
 	
-	u32b window_flag[reposband_TERM_MAX];	/* Window flags */
+	u32b window_flag[REPOSBAND_TERM_MAX];	/* Window flags */
 	
 	byte hitpoint_warn;		/* Hitpoint warning (0 to 9) */
 	

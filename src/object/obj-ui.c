@@ -317,18 +317,18 @@ void show_equip(olist_detail_t mode)
 			}
 
 			/* Acceptable items get a label */
-			if (item_tester_okay(o_ptr))
+			//if (item_tester_okay(o_ptr))
 				strnfmt(labels[num_obj], sizeof(labels[num_obj]), "%c) ", index_to_label(num_obj));
 
 			/* Unacceptable items are still displayed in term windows */
-			else if (in_term)
-				my_strcpy(labels[num_obj], "   ", sizeof(labels[num_obj]));
+			//else if (in_term)
+			//	my_strcpy(labels[num_obj], "   ", sizeof(labels[num_obj]));
 
 			/* Unacceptable items are skipped in the main window */
-			else continue;
+			//else continue;
 
 			/* Show full slot labels */
-			if (OPT(show_labels))
+			if (TRUE)//OPT(show_labels))
 			{
 				strnfmt(tmp_val, sizeof(tmp_val), "%-14s: ", mention_use(i));
 				my_strcat(labels[num_obj], tmp_val, sizeof(labels[num_obj]));
@@ -451,7 +451,7 @@ static bool get_item_allow(int item, unsigned char ch, bool is_harmless)
 	/* Check for a "prevention" inscription */
 	verify_inscrip[1] = ch;
 
-	/* Find both sets of inscriptions, add togther, and prompt that number of times */
+	/* Find both sets of inscriptions, add together, and prompt that number of times */
 	n = check_for_inscrip(o_ptr, verify_inscrip);
 
 	if (!is_harmless)
@@ -478,7 +478,7 @@ static bool get_item_allow(int item, unsigned char ch, bool is_harmless)
  * Also, the tag "@xn" will work as well, where "n" is a tag-char,
  * and "x" is the action that tag will work for.
  */
-static int get_tag(int *cp, char tag, char cmdkey, bool quiver_tags)
+static int get_tag(int *cp, char tag, cmd_code cmd, bool quiver_tags)
 {
 	int i;
 	cptr s;
@@ -523,7 +523,7 @@ static int get_tag(int *cp, char tag, char cmdkey, bool quiver_tags)
 			}
 
 			/* Check the special tags */
-			if ((s[1] == cmdkey) && (s[2] == tag))
+			if ((cmd_lookup(s[1]) == cmd) && (s[2] == tag))
 			{
 				/* Save the actual inventory ID */
 				*cp = i;
@@ -613,7 +613,6 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 	bool use_equip = ((mode & USE_EQUIP) ? TRUE : FALSE);
 	bool use_floor = ((mode & USE_FLOOR) ? TRUE : FALSE);
 	bool use_quiver = ((mode & QUIVER_TAGS) ? TRUE : FALSE);
-	bool can_squelch = ((mode & CAN_SQUELCH) ? TRUE : FALSE);
 	bool is_harmless = ((mode & IS_HARMLESS) ? TRUE : FALSE);
 	bool quiver_tags = ((mode & QUIVER_TAGS) ? TRUE : FALSE);
 
@@ -631,7 +630,7 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 	int floor_list[MAX_FLOOR_STACK];
 	int floor_num;
 
-	bool show_list = OPT(show_lists) ? TRUE : FALSE;
+	bool show_list = TRUE;
 
 
 	/* Object list display modes */
@@ -753,7 +752,7 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 		int ne = 0;
 
 		/* Scan windows */
-		for (j = 0; j < reposband_TERM_MAX; j++)
+		for (j = 0; j < REPOSBAND_TERM_MAX; j++)
 		{
 			/* Unused */
 			if (!reposband_term[j]) continue;
@@ -821,13 +820,6 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 			{
 				my_strcat(out_val, " - for floor,", sizeof(out_val));
 				button_add("[-]", '-');
-			}
-
-			/* Indicate that squelched items can be selected */
-			if (can_squelch)
-			{
-				my_strcat(out_val, " ! for squelched,", sizeof(out_val));
-				button_add("[!]", '!');
 			}
 		}
 
@@ -912,13 +904,6 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 				my_strcat(out_val, " / for Equip,", sizeof(out_val));
 				button_add("[/]", '/');
 			}
-
-			/* Indicate that squelched items can be selected */
-			if (can_squelch)
-			{
-				my_strcat(out_val, " ! for squelched,", sizeof(out_val));
-				button_add("[!]", '!');
-			}
 		}
 
 		redraw_stuff();
@@ -942,36 +927,6 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 			case ESCAPE:
 			{
 				done = TRUE;
-				break;
-			}
-
-			case '*':
-			case '?':
-			case ' ':
-			{
-				if (!OPT(show_lists))
-				{
-					/* Hide the list */
-					if (show_list)
-					{
-						/* Flip flag */
-						show_list = FALSE;
-
-						/* Load screen */
-						screen_load();
-					}
-
-					/* Show the list */
-					else
-					{
-						/* Save screen */
-						screen_save();
-
-						/* Flip flag */
-						show_list = TRUE;
-					}
-				}
-
 				break;
 			}
 
@@ -1087,7 +1042,7 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 			case '7': case '8': case '9':
 			{
 				/* Look up the tag */
-				if (!get_tag(&k, which.key, cmdkey, quiver_tags))
+				if (!get_tag(&k, which.key, cmd, quiver_tags))
 				{
 					bell("Illegal object choice (tag)!");
 					break;
@@ -1183,20 +1138,6 @@ bool get_item(int *cp, cptr pmt, cptr str, cmd_code cmd, int mode)
 				item = TRUE;
 				done = TRUE;
 				break;
-			}
-
-			case '!':
-			{
-				/* Try squelched items */
-				if (can_squelch)
-				{
-					(*cp) = ALL_SQUELCHED;
-					item = TRUE;
-					done = TRUE;
-					break;
-				}
-
-				/* Just fall through */
 			}
 
 			default:

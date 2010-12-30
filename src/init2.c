@@ -2582,16 +2582,39 @@ static enum parser_error parse_p_l(struct parser *p) {
 	struct player_race *r = parser_priv(p);
 	if (!r)
 		return PARSE_ERROR_MISSING_RECORD_HEADER;
+	for (int i = 0; i < MAX_NEXT_FORMS; i++)
+	{
+		r->next_form_indices[i] = -1;
+	}
 	if (!parser_hasval(p, "lvl"))
 	{
 		r->initial_level = 0;
 		r->max_level = 50;
-		r->next_form_index = -1;
 		return PARSE_ERROR_NONE;
 	}
 	r->initial_level = parser_getint(p, "lvl");
 	r->max_level = parser_getint(p, "mlvl");
-	r->next_form_index = parser_getint(p, "nid");
+	/* I'm hardcoding the number of races that can be changed into b/c I'm not good enough at programming to do this the right way -Simon */
+	if (parser_hasval(p, "nid0"))
+		r->next_form_indices[0] = parser_getint(p, "nid0");
+	else
+		return PARSE_ERROR_NONE;
+	if (parser_hasval(p, "nid1"))
+		r->next_form_indices[1] = parser_getint(p, "nid1");
+	else
+		return PARSE_ERROR_NONE;
+	if (parser_hasval(p, "nid2"))
+		r->next_form_indices[2] = parser_getint(p, "nid2");
+	else
+		return PARSE_ERROR_NONE;
+	if (parser_hasval(p, "nid3"))
+		r->next_form_indices[3] = parser_getint(p, "nid3");
+	else
+		return PARSE_ERROR_NONE;
+	if (parser_hasval(p, "nid4"))
+		r->next_form_indices[4] = parser_getint(p, "nid4");
+	else
+		return PARSE_ERROR_NONE;
 	return PARSE_ERROR_NONE;
 }
 
@@ -2670,7 +2693,7 @@ struct parser *init_parse_p(void) {
 	parser_reg(p, "C ?str classes", parse_p_c);
 	parser_reg(p, "E sym tval sym sval uint min uint max", parse_p_e);
 	parser_reg(p, "M int pmid", parse_p_m);
-	parser_reg(p, "L int lvl int mlvl int nid", parse_p_l);
+	parser_reg(p, "L int lvl int mlvl int nid0 int nid1 int nid2 int nid3 int nid4", parse_p_l);
 	parser_reg(p, "Q int mslt int rslt int islt int aslt int lslt int bslt int cslt int sslt int hslt int gslt int oslt", parse_p_q);
 	parser_reg(p, "P int lvl int cost sym name int fail", parse_p_p);
 	return p;
@@ -3283,6 +3306,43 @@ static void init_books(void)
 	}
 }
 
+
+/* Initialise hints */
+static enum parser_error parse_hint(struct parser *p) {
+	struct hint *h = parser_priv(p);
+	struct hint *new = mem_zalloc(sizeof *new);
+
+	new->hint = string_make(parser_getstr(p, "text"));
+	new->next = h;
+
+	parser_setpriv(p, new);
+	return PARSE_ERROR_NONE;
+}
+
+struct parser *init_parse_hints(void) {
+	struct parser *p = parser_new();
+	parser_reg(p, "H str text", parse_hint);
+	return p;
+}
+
+static errr run_parse_hints(struct parser *p) {
+	return parse_file(p, "hints");
+}
+
+static errr finish_parse_hints(struct parser *p) {
+	hints = parser_priv(p);
+	parser_destroy(p);
+	return 0;
+}
+
+static struct file_parser hints_parser = {
+	"hints",
+	init_parse_hints,
+	run_parse_hints,
+	finish_parse_hints,
+};
+
+
 /*** Initialize others ***/
 
 static void autoinscribe_init(void)
@@ -3395,7 +3455,7 @@ static errr init_other(void)
 	option_set_defaults();
 
 	/* Initialize the window flags */
-	for (i = 0; i < reposband_TERM_MAX; i++)
+	for (i = 0; i < REPOSBAND_TERM_MAX; i++)
 	{
 		/* Assume no flags */
 		op_ptr->window_flag[i] = 0L;
@@ -3702,6 +3762,10 @@ bool init_reposband(void)
 	/* Initialize spell info */
 	event_signal_string(EVENT_INITSTATUS, "Initializing arrays... (spells)");
 	if (run_parser(&s_parser)) quit("Cannot initialize spells");
+
+	/* Initialize hint text */
+	event_signal_string(EVENT_INITSTATUS, "Initializing arrays... (hints)");
+	if (run_parser(&hints_parser)) quit("Cannot initialize hints");
 
 	/* Initialize spellbook info */
 	event_signal_string(EVENT_INITSTATUS, "Initializing arrays... (spellbooks)");

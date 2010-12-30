@@ -1,7 +1,7 @@
 === Creating a Character ===
 
-reposband is a roleplaying game, in which you, the player, control a 
-character in the world of reposband.  Perhaps the most important thing you 
+Angband is a roleplaying game, in which you, the player, control a 
+character in the world of Angband.  Perhaps the most important thing you 
 control is the birth of your character, in which you choose or allow to 
 be chosen various attributes that will affect the future life of your 
 character.
@@ -123,7 +123,7 @@ rarest and most sought after.
 
 === Races ===
 
-There are eleven different races that you can choose to play in reposband.  
+There are eleven different races that you can choose to play in Angband.  
 Each race has its own adjustments to a character's stats and abilities. 
 Most races also have intrinsic abilities.  The bonuses to statistics and 
 the experience penalty will be displayed next to the races as you move 
@@ -434,7 +434,7 @@ the level of the character.
                the player to see walls and objects.  Infravision will allow
                a character to see any warm-blooded creatures up to a cer-
                tain distance.  This ability works equally well with or with-
-               out a light source.  However, some of reposband's creatures are
+               out a light source.  However, some of Angband's creatures are
                cold-blooded, and will not be detected unless lit up by a
                light source.  All non-human races have innate infravision. 
                Humans (including Dunedain) cannot gain infravision unless it

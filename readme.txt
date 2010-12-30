@@ -1,7 +1,7 @@
-reposband 3.2.0
+Angband 3.2.0
 =============
 
-reposband is a graphical dungeon adventure game that uses textual characters
+Angband is a graphical dungeon adventure game that uses textual characters
 to represent the walls and floors of a dungeon and the inhabitants therein, 
 in the vein of games like NetHack and Rogue.  If you need help in-game,
 press '?'.
@@ -13,4 +13,4 @@ If you're compiling the game yourself, read http://rephial.org/wiki/Compiling.
 
 Enjoy!
 
--- Andi Sidwell, maintainer
+-- Simon Greenwood, paraphrasing Andi Sidwell, Angband's maintainer

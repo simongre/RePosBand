@@ -88,7 +88,7 @@ static void quit_hook(cptr s)
 	(void)s;
 
 	/* Scan windows */
-	for (j = reposband_TERM_MAX - 1; j >= 0; j--)
+	for (j = REPOSBAND_TERM_MAX - 1; j >= 0; j--)
 	{
 		/* Unused */
 		if (!reposband_term[j]) continue;

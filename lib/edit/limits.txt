@@ -1,7 +1,7 @@
 # File: limits.txt
 
 
-# This file is used to initialize the "array sizes" information for reposband.
+# This file is used to initialize the "array sizes" information for Angband.
 
 # Do not modify this file unless you know exactly what you are doing,
 # unless you wish to risk possible system crashes and broken savefiles.
@@ -31,7 +31,7 @@ M:R:618
 M:V:71
 
 # Maximum number of player races
-M:P:20
+M:P:44
 
 # Maximum number of player classes
 M:C:7

@@ -1,12 +1,12 @@
 === Version Information ===
 
-This file was last updated for reposband 3.1.2.
+This file was last updated for Angband 3.1.2.
 
-Make sure to read the newsgroup ("rec.games.roguelike.reposband"), and to visit
-the Official reposband Home Page ("http://rephial.org") for the most
-up to date information about reposband.
+Make sure to read the newsgroup ("rec.games.roguelike.Angband"), and to visit
+the Official Angband Home Page ("http://rephial.org") for the most
+up to date information about Angband.
 
-reposband 3.1.2 has an incredibly complex history, and is the result of a
+Angband 3.1.2 has an incredibly complex history, and is the result of a
 lot of work by a lot of people, all of whom have contributed their time
 and energy for free, being rewarded only by the pleasure of keeping alive
 one of the best freeware games available anywhere.
@@ -26,84 +26,84 @@ First came "VMS Moria", by Robert Alan Koeneke (1985).
 Then came "Umoria" (Unix Moria), by James E. Wilson (1989).
 
 Details about the history of the various flavors of "Moria", the direct
-ancestor to reposband, can be found elsewhere, and a note from Robert Alan
+ancestor to Angband, can be found elsewhere, and a note from Robert Alan
 Koeneke is included in this file.  Note that "Moria" has been ported to
 a variety of platforms, and has its own newsgroup, and its own fans.
 
 In 1990, Alex Cutler and Andy Astrand, with the help of other students
-at the University of Warwick, created reposband 1.0, based on the existing
+at the University of Warwick, created Angband 1.0, based on the existing
 code for Umoria 5.2.1.  They wanted to expand the game, keeping or even
 strengthening the grounding in Tolkien lore, while adding more monsters
 and items, including unique monsters and artifact items, plus activation,
 pseudo-sensing, level feelings, and special dungeon rooms.
 
 Over time, Sean Marsh, Geoff Hill, Charles Teague, and others, worked on
-the source, releasing a copy known as "reposband 2.4.frog_knows" at some
+the source, releasing a copy known as "Angband 2.4.frog_knows" at some
 point, which ran only on Unix systems, but which was ported by various
 people to various other systems.  One of the most significant ports was
-the "PC reposband 1.4" port, for old DOS machines, which added color and
+the "PC Angband 1.4" port, for old DOS machines, which added color and
 various other significant changes, only some of which ever made it back
 into the official source.
 
 Then Charles Swiger (cs4w+@andrew.cmu.edu) took over, sometime in late
 1993, cleaning up the code, fixing a lot of bugs, and bringing together
 various patches from various people, resulting in several versions of
-reposband, starting with reposband 2.5.1 (?), and leading up to the release
-of reposband 2.6.1 (and reposband 2.6.2) in late 1994.  Some of the changes
+Angband, starting with Angband 2.5.1 (?), and leading up to the release
+of Angband 2.6.1 (and Angband 2.6.2) in late 1994.  Some of the changes
 during this period were based on suggestions from the "net", and from
-various related games, including "UMoria 5.5", "PC reposband 1.4", and
-"Freposband".
+various related games, including "UMoria 5.5", "PC Angband 1.4", and
+"FAngband".
 
-reposband 2.6.1 was primarily targetted towards Unix/NeXT machines, and
+Angband 2.6.1 was primarily targetted towards Unix/NeXT machines, and
 it required the use of the low level "curses" commands for all screen
 manipulation and keypress interaction.  Each release had to be ported
 from scratch to any new platforms, normally by creating visual display
 code that acted as a "curses" emulator.  One such port was "Macintosh
-reposband 2.6.1", by Keith Randall, which added support for color, and
-which formed the basis for the first release of reposband 2.7.0.
+Angband 2.6.1", by Keith Randall, which added support for color, and
+which formed the basis for the first release of Angband 2.7.0.
 
 During the last half of 1994, Ben Harrison had been playing with
-the reposband source, primarily to investigate the possibility of making
-some kind of automatic player for reposband, like the old "rogue-o-matic"
+the Angband source, primarily to investigate the possibility of making
+some kind of automatic player for Angband, like the old "rogue-o-matic"
 program for the game "Rogue".  The difficulty of compiling a version
 for the Macintosh, and the complexity of the code, prevented this, and
 so Ben began cleaning up the code in various ways for his personal use.
 
 In late 1994, Charles Swiger announced that he was starting a real job
-and would no longer be able to be the reposband maintainer.  This induced
-some amount of uproar in the reposband community (as represented by the
-reposband newsgroup), with various people attempting to form "committees"
-to take over the maintenance of reposband.  Since committees have never
+and would no longer be able to be the Angband maintainer.  This induced
+some amount of uproar in the Angband community (as represented by the
+Angband newsgroup), with various people attempting to form "committees"
+to take over the maintenance of Angband.  Since committees have never
 given us anything but trouble (think "COBOL"), there was very little
 resistance when, on the first day of 1995, Ben made his code available,
-calling it "reposband 2.7.0", and by default, taking over as the new
-maintainer of reposband.
+calling it "Angband 2.7.0", and by default, taking over as the new
+maintainer of Angband.
 
-reposband 2.7.0 was a very clean (but very buggy) rewrite that, among other
+Angband 2.7.0 was a very clean (but very buggy) rewrite that, among other
 things, allowed extremely simple porting to multiple platforms, starting
 with Unix and Macintosh, and by the time most of the bugs were cleaned up,
-in reposband 2.7.2, including X11, and various IBM machines.  reposband 2.7.4
+in Angband 2.7.2, including X11, and various IBM machines.  Angband 2.7.4
 was released to the "ftp.cis.ksu.edu" site, and quickly gained acceptance,
-perhaps helped by the OS2 and Windows and Amiga and Linux ports.  reposband
+perhaps helped by the OS2 and Windows and Amiga and Linux ports.  Angband
 2.7.5 and 2.7.6 added important capabilities such as macros and user pref
-files, and continued to clean up the source.  reposband 2.7.8 was released
+files, and continued to clean up the source.  Angband 2.7.8 was released
 to the major ftp archives as the first "stable" version in a year or so,
 with new "help files" and "spoiler files" for the "online help", plus a
 variety of minor tweaks and some new features.
 
-After reposband 2.7.8 was released, Ben created a web site to keep track of
+After Angband 2.7.8 was released, Ben created a web site to keep track of
 all the changes made in each version (though a few may have been missed),
 and acquired the use of a new develoepement ftp server to supplement the
 official "mirror" server.  This web site is now permanently located at
-the Official reposband Home Page (http://www.thangorodrim.net/).
-Unfortunately, the next six versions were numbered reposband 2.7.9v1 to
-reposband 2.7.9v6, but really each were rather major updates.  reposband 2.8.0
-and 2.8.1 were released using a more normal version scheme.  reposband 2.8.2
+the Official Angband Home Page (http://www.thangorodrim.net/).
+Unfortunately, the next six versions were numbered Angband 2.7.9v1 to
+Angband 2.7.9v6, but really each were rather major updates.  Angband 2.8.0
+and 2.8.1 were released using a more normal version scheme.  Angband 2.8.2
 and 2.8.3 add a few random features, clean up some code, and provide
 graphics support and such for a few more platforms.
 
-After the release of reposband 2.8.3 Ben's free time was more and more
-occupied by his work.  He released a beta version of reposband 2.8.5,
+After the release of Angband 2.8.3 Ben's free time was more and more
+occupied by his work.  He released a beta version of Angband 2.8.5,
 introducing many new features, but couldn't give as much attention to
 maintaining the game as he wanted to.  Meanwhile, an "unofficial" version
 by Robert Ruehlmann, incorporating three popular patches (the "Easy Patch" 
@@ -111,9 +111,9 @@ by Tim Baker, for opening doors and disarming traps without specifying
 the direction: Greg Wooledge's "Random Artifacts" patch: and Keldon Jones's
 "Optional Monster AI Improvement"), named "2.8.3h", was gaining popularity.
 
-So in March 2000, Robert Ruehlmann offered to take over reposband and
-started to fix the remaining bugs in the reposband 2.8.5 beta.  The
-resulting version was to be released as reposband 2.9.0. Further 
+So in March 2000, Robert Ruehlmann offered to take over Angband and
+started to fix the remaining bugs in the Angband 2.8.5 beta.  The
+resulting version was to be released as Angband 2.9.0. Further 
 bugfixes and a couple of new features - including many in the realms
 of user-customizability, with greater control over ego-items, player
 races and classes, monsters, items and artifacts - have led to the 
@@ -143,7 +143,7 @@ items, missing out on some of the most interesting depths of the dungeon.
 This problem, at least, could be addressed, but actual new things were less
 easy to add...
 
-That all changed with reposband 2.9.1, which for the first time moved the 
+That all changed with Angband 2.9.1, which for the first time moved the 
 limits themselves to a separate user-editable file, and allowed more 
 monsters and items to be created without removing the old ones. At the 
 same time, a patch by Matthias Kurzke was incorporated which allowed the 
@@ -151,17 +151,17 @@ creation of new ego-items.  Various new powers, for the player and
 monsters, were added to the game - but no items or monsters yet had these 
 powers (resist fear, poison brand, lose charisma, summon greater demons,
 and so on): indeed, arguably it could be said that the game had not even
-adjusted properly to Ben Harrison's fractional speed system (reposband 2.7.0)
+adjusted properly to Ben Harrison's fractional speed system (Angband 2.7.0)
 or the addition of the other attack forms such as shards, sound, chaos, 
 nexus and so on (even before Ben.) 
 
 
-The Official reposband Home Page ("http://rephial.org/") serves not only as 
-the most up to date description of reposband, but also lists changes made 
+The Official Angband Home Page ("http://rephial.org/") serves not only as 
+the most up to date description of Angband, but also lists changes made 
 between versions, and changes planned for upcoming versions, and lists 
-various email addresses and web sites related to reposband.
+various email addresses and web sites related to Angband.
 
-=== Some of the changes between reposband 2.6.1 and 3.0.6 ===
+=== Some of the changes between Angband 2.6.1 and 3.0.6 ===
 
 It is very hard to pin down, along the way from 2.6.2 to 3.0.6, exactly what
 changes were made, and exactly when they were made. Most releases involved 
@@ -171,7 +171,7 @@ the changes, with the notable exception of the creation of some of the new
 "main-xxx.c" files for the various new platforms, and a few other minor 
 exceptions generally noted directly in comments in the source, were written 
 by Ben or Robert, either spontaneously, or, more commonly, as the result of 
-a suggestion or comment by an reposband player.
+a suggestion or comment by an Angband player.
 
 The most important modification was a massive "code level cleanup" for 2.7.x, 
 largely completed in 2.7.8, that made all other modifications much simpler 
@@ -180,12 +180,12 @@ longer recognizable, for example, via "diff -r", often because it was
 rewritten from scratch.
 
 The second most important modification was the design of a generic "z-term.c"
-package, which allows reposband to be ported to a new machine with as few as 50
-lines of code.  reposband 2.9.3 thus runs without modification on many machines,
+package, which allows Angband to be ported to a new machine with as few as 50
+lines of code.  Angband 2.9.3 thus runs without modification on many machines,
 including Macintosh, PowerMac, Unix/X11, Unix/Curses, Amiga, Windows, OS2-386,
 DOS-386, and even DOS-286.
 
-It would be difficult to list all of the changes between reposband 2.6.1 and
+It would be difficult to list all of the changes between Angband 2.6.1 and
 3.0.6, because many of them were made in passing during the massive code 
 level cleanup.  Many of the changes are invisible to the user, but still 
 provide increased simplicity and efficiency, and decreased code size, or 
@@ -207,16 +207,16 @@ first tried in 2.7.9, completed in 2.8.2.
 
 It should also be pointed out at this point that the far cleaner nature of 
 Ben's code as compared to previous versions has given many other people the 
-opportunity to base code for their own reposband variants on it. And so a 
+opportunity to base code for their own Angband variants on it. And so a 
 plethora of new variants have appeared, many of them far more different from 
-reposband now than reposband ever was from Moria, and yet still based on Ben's 
-coding ideals for reposband.
+Angband now than Angband ever was from Moria, and yet still based on Ben's 
+coding ideals for Angband.
 
-For reposband 2.9.0, the first few new visible features were a random artifact 
+For Angband 2.9.0, the first few new visible features were a random artifact 
 generator (originally developed from a variant by Greg Wooledge), an option to 
 improve monster AI (believed to have originally started out life in a patch 
 written by Keldon Jones), and a patch to allow easier handling of opening and 
-closing doors and disarming traps (by Tim Baker). For reposband 2.9.1 has also 
+closing doors and disarming traps (by Tim Baker). For Angband 2.9.1 has also 
 come such things as the ability to increase the size of the editable textfiles
 and thus the number of monsters, artifacts, items, ego-items and vaults in 
 the game (many new vaults were written by Chris Weisiger, some by others, and 
@@ -224,15 +224,15 @@ the number of vaults in the game at this time was doubled), and much greater
 customizability of ego-items has become possible thanks to a patch written by 
 Matthias Kurzke. It is also now possible to add new character races to the 
 game, and to edit the shopkeepers with respect to their greed, tolerance of 
-haggling and reactions to the character based on his race. reposband 2.9.2 adds 
-support for poison branded weapons to the game.  reposband 2.9.3 made the
+haggling and reactions to the character based on his race. Angband 2.9.2 adds 
+support for poison branded weapons to the game.  Angband 2.9.3 made the
 character class itself customizable to an extent.
 
 
 === A Posting from the Original Author ===
 
 From: koeneke@ionet.net (Robert Alan Koeneke)
-Newsgroups: rec.games.roguelike.reposband,rec.games.roguelike.moria
+Newsgroups: rec.games.roguelike.Angband,rec.games.roguelike.moria
 Subject: Early history of Moria
 Date: Wed, 21 Feb 1996 04:20:51 GMT
 
@@ -244,7 +244,7 @@ First of all, yes, I really am the Robert Koeneke who wrote the first
 Moria.  I had a lot of mail accussing me of pulling their leg and
 such.  I just recently connected to Internet (yes, I work for a
 company in the dark ages where Internet is concerned) and 
-was real surprised to find Moria in the news groups...  reposband was an
+was real surprised to find Moria in the news groups...  Angband was an
 even bigger surprise, since I have never seen it.  I probably spoke to
 its originator though...  I have given permission to lots of people
 through the years to enhance, modify, or whatever as long as they
@@ -342,7 +342,7 @@ have a map with pins for every letter I received, but I gave up on
 that!
 
 I am very happy to learn my creation keeps on going...  I plan to
-download it and reposband and play them...  Maybe something has been
+download it and Angband and play them...  Maybe something has been
 added that will surprise me!  That would be nice...  I never got to
 play Moria and be surprised...
 
@@ -407,20 +407,20 @@ Copyright (c) 1989 James E. Wilson, Robert A. Keoneke
 
 Umoria Version 5.2, patch level 1
 
-reposband Version 2.0   Alex Cutler, Andy Astrand, Sean Marsh, Geoff Hill, 
+Angband Version 2.0   Alex Cutler, Andy Astrand, Sean Marsh, Geoff Hill, 
                       Charles Teague.
 
-reposband Version 2.4   : 05/09/1993
+Angband Version 2.4   : 05/09/1993
 
-reposband Version 2.5   : 12/05/1993 Charles Swiger
+Angband Version 2.5   : 12/05/1993 Charles Swiger
 
-reposband Version 2.6   : 09/04/1994 Charles Swiger
+Angband Version 2.6   : 09/04/1994 Charles Swiger
 
-reposband Version 2.7   : 01/01/1995 Ben Harrison
+Angband Version 2.7   : 01/01/1995 Ben Harrison
 
-reposband Version 2.8   : 01/01/1997 Ben Harrison
+Angband Version 2.8   : 01/01/1997 Ben Harrison
 
-reposband Version 2.9   : 10th April 2000 Robert Ruehlmann
+Angband Version 2.9   : 10th April 2000 Robert Ruehlmann
 
 
 

@@ -1,10 +1,10 @@
 Thanks to Avenger, Graham Philips and Alexander Ulyanov for creating and maintaining the original PosBand
 ====================
-reposband thanks
+Angband thanks
 If your name should be included in this file and it's not, please email us
 so we can fix it. :)
 
-This version is brought to you by the reposband dev team:
+This version is brought to you by the Angband dev team:
 
 Andi Sidwell (takkaria)
 Aerdan
@@ -21,13 +21,13 @@ Peter Denison (noz)
 Previous maintainers:
 =====================
 
-reposband 2.9.0 - 3.0.6:
+Angband 2.9.0 - 3.0.6:
 Robert Ruehlmann <rr9@thangorodrim.net>
 
-reposband 2.7.0 - 2.8.5:
+Angband 2.7.0 - 2.8.5:
 Ben Harrison <benh@phial.com>
 
-reposband 2.0 - 2.4 - 2.6.1 by:
+Angband 2.0 - 2.4 - 2.6.1 by:
 Alex Cutler, Andy Astrand, Sean Marsh,
 Geoff Hill, Charles Teague, Charles Swiger
 
@@ -39,7 +39,7 @@ Contributors:
 =============
 
 Many thanks go to the following people who have contributed patches,
-bugfixes, and other stuff for reposband:
+bugfixes, and other stuff for Angband:
 
 Peter Berger, Andrew Hill, Werner Baer, Tom Morton, "Cyric the Mad", 
 Chris Kern, Jurriaan Kalkman, Alexander Wilkins, Mauro Scarpa, "facade", 
@@ -79,7 +79,7 @@ various ideas for rebalancing the game including the new list of magic
 spells
 
 Tim Baker < dbaker@direct.ca >
-Made the "easy patch" and organized the patches for the reposband 2.8.5 beta
+Made the "easy patch" and organized the patches for the Angband 2.8.5 beta
 
 Eytan Zweig < eytanzw@yahoo.com >
 Many bug reports and patches
@@ -94,11 +94,11 @@ Many bugfixes and patches
 Steven Fuerst < sfuerst@physics.usyd.edu.au >
 Improved X11, XAW, and GTK code
 
-"Bablos" < reposband@blueyonder.co.uk >
+"Bablos" < Angband@blueyonder.co.uk >
 Updated Amiga code
 
 Chris Weisiger
-New reposband vaults
+New Angband vaults
 
 Matthias Kurzke < mawende@gmx.net >
 Ego-item patch and various code changes for the JLE patch

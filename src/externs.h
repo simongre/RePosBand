@@ -77,8 +77,8 @@ extern s16b rating;
 extern bool good_item_flag;
 extern bool closing_flag;
 extern char savefile[1024];
-extern term *reposband_term[reposband_TERM_MAX];
-extern char reposband_term_name[reposband_TERM_MAX][16];
+extern term *reposband_term[REPOSBAND_TERM_MAX];
+extern char reposband_term_name[REPOSBAND_TERM_MAX][16];
 extern byte reposband_color_table[MAX_COLORS][4];
 extern color_type color_table[MAX_COLORS];
 extern const cptr reposband_sound_name[MSG_MAX];
@@ -132,6 +132,7 @@ extern byte *g_info;
 extern flavor_type *flavor_info;
 extern spell_type *s_info;
 extern s16b spell_list[MAX_REALMS][BOOKS_PER_REALM][SPELLS_PER_BOOK];
+extern struct hint *hints;
 
 extern const char *reposband_SYS;
 extern const char *reposband_GRAF;
@@ -182,7 +183,7 @@ extern void player_birth(bool quickstart_allowed);
 /* cmd1.c */
 extern bool search(bool verbose);
 extern byte py_pickup(int pickup);
-extern void move_player(int dir);
+extern void move_player(int dir, bool disarm);
 
 /* cmd2.c */
 /* XXX should probably be moved to cave.c? */
@@ -201,11 +202,6 @@ extern void dungeon_change_level(int dlev);
 extern void play_game(void);
 extern int value_check_aux1(const object_type *o_ptr);
 extern void idle_update(void);
-
-/* files.c */
-
-/* load.c */
-extern bool old_load(void);
 
 /* melee1.c */
 bool check_hit(int power, int level, int m_idx);
@@ -242,9 +238,6 @@ extern void predict_score(void);
 extern void signals_ignore_tstp(void);
 extern void signals_handle_tstp(void);
 extern void signals_init(void);
-
-/* save.c */
-extern bool old_save(void);
 
 /* store.c */
 void do_cmd_store_knowledge(void);
@@ -328,6 +321,7 @@ byte monster_health_attr(void);
 void cnv_stat(int val, char *out_val, size_t out_len);
 void toggle_inven_equip(void);
 void subwindows_set_flags(u32b *new_flags, size_t n_subwindows);
+char* random_hint(void);
 
 /* wiz-spoil.c */
 bool make_fake_artifact(object_type *o_ptr, byte name1);

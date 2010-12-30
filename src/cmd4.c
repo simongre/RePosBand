@@ -101,7 +101,7 @@ void do_cmd_redraw(void)
 
 
 	/* Redraw every window */
-	for (j = 0; j < reposband_TERM_MAX; j++)
+	for (j = 0; j < REPOSBAND_TERM_MAX; j++)
 	{
 		/* Dead window */
 		if (!reposband_term[j]) continue;
@@ -111,11 +111,7 @@ void do_cmd_redraw(void)
 
 		/* Redraw */
 		Term_redraw();
-
-		/* Refresh */
 		Term_fresh();
-
-		/* Restore */
 		Term_activate(old);
 	}
 }
@@ -525,7 +521,7 @@ static const char *feeling_text[] =
 void do_cmd_feeling(void)
 {
 	/* Don't show feelings for cold-hearted characters */
-	if (OPT(adult_no_feelings)) return;
+	if (OPT(birth_no_feelings)) return;
 
 	/* Verify the feeling */
 	if (feeling >= N_ELEMENTS(feeling_text))

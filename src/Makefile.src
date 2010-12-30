@@ -5,8 +5,8 @@
 # across a range of different makefiles, to cut down on maintenance.
 #
 
-VERSION = 3.1.2
-COPYRIGHT = (c) 1995-2010 reposband contributors
+VERSION = 3.2.0
+COPYRIGHT = (c) 1995-2010 Angband contributors
 
 HEADERS = \
 	reposband.h \
@@ -77,7 +77,6 @@ ANGFILES = \
 	history.o \
 	init2.o \
 	load.o \
-	load-old.o \
 	macro.o \
 	monster/melee1.o \
 	monster/melee2.o \

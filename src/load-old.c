@@ -438,8 +438,8 @@ static int rd_options(void)
 
 	u32b flag[8];
 	u32b mask[8];
-	u32b window_flag[reposband_TERM_MAX];
-	u32b window_mask[reposband_TERM_MAX];
+	u32b window_flag[REPOSBAND_TERM_MAX];
+	u32b window_mask[REPOSBAND_TERM_MAX];
 
 
 	/*** Oops ***/
@@ -493,19 +493,19 @@ static int rd_options(void)
 	/*** Window Options ***/
 
 	/* Read the window flags */
-	for (n = 0; n < reposband_TERM_MAX; n++)
+	for (n = 0; n < REPOSBAND_TERM_MAX; n++)
 	{
 		rd_u32b(&window_flag[n]);
 	}
 
 	/* Read the window masks */
-	for (n = 0; n < reposband_TERM_MAX; n++)
+	for (n = 0; n < REPOSBAND_TERM_MAX; n++)
 	{
 		rd_u32b(&window_mask[n]);
 	}
 
 	/* Analyze the options */
-	for (n = 0; n < reposband_TERM_MAX; n++)
+	for (n = 0; n < REPOSBAND_TERM_MAX; n++)
 	{
 		/* Analyze the options */
 		for (i = 0; i < 32; i++)
@@ -523,7 +523,7 @@ static int rd_options(void)
 	}
 
 	/* Set up the subwindows */
-	subwindows_set_flags(window_flag, reposband_TERM_MAX);
+	subwindows_set_flags(window_flag, REPOSBAND_TERM_MAX);
 
 	return 0;
 }

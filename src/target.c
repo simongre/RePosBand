@@ -350,7 +350,7 @@ static bool target_set_interactive_accept(int y, int x)
 	for (o_ptr = get_first_object(y, x); o_ptr; o_ptr = get_next_object(o_ptr))
 	{
 		/* Memorized object */
-		if (o_ptr->marked && !squelch_hide_item(o_ptr)) return (TRUE);
+		if (o_ptr->marked && !squelch_item_ok(o_ptr)) return (TRUE);
 	}
 
 	/* Interesting memorized features */
@@ -458,7 +458,7 @@ bool adjust_panel_help(int y, int x, bool help)
 							   : (Term->hgt - ROW_MAP - 1);
 
 	/* Scan windows */
-	for (j = 0; j < reposband_TERM_MAX; j++)
+	for (j = 0; j < REPOSBAND_TERM_MAX; j++)
 	{
 		int wx, wy;
 		int screen_hgt, screen_wid;

@@ -1,7 +1,7 @@
 # File: ego_item.txt
 
 
-# This file is used to initialize the "ego-item" information for reposband.
+# This file is used to initialize the "ego-item" information for Angband.
 
 # Do not modify this file unless you know exactly what you are doing,
 # unless you wish to risk possible system crashes and broken savefiles.

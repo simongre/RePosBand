@@ -1,7 +1,7 @@
 # File: artifact.txt
 
 
-# This file is used to initialize the "artifact" information for reposband.
+# This file is used to initialize the "artifact" information for Angband.
 
 # Do not modify this file unless you know exactly what you are doing,
 # unless you wish to risk possible system crashes and broken savefiles.
@@ -972,7 +972,7 @@ P:0:2d5:12:15:0
 F:INT | DEX | SPEED | HIDE_TYPE | 
 F:SLAY_TROLL | SLAY_GIANT | FREE_ACT | SEE_INVIS | SHOW_MODS
 D:A short thrusting blade with a large guard worn by Maedhros the Tall, 
-D:eldest son of F["e]anor, who lost his right hand in captivity in reposband.
+D:eldest son of F["e]anor, who lost his right hand in captivity in Angband.
 
 
 N:65:'Angrist'

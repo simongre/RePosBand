@@ -91,9 +91,58 @@ void check_experience(void)
 		history_add(buf, HISTORY_GAIN_LEVEL, 0);
 
 		/* Evolve -Simon */
-		if ((p_ptr->lev >= rp_ptr->max_level) && (rp_ptr->next_form_index >= 0))
+		if ((p_ptr->lev >= rp_ptr->max_level) && (rp_ptr->next_form_indices[0] >= 0))
 		{
-			p_ptr->prace = rp_ptr->next_form_index;
+			int choice;
+			int i;
+			if (rp_ptr->next_form_indices[1] == -1)
+			{
+				/* No choice */
+				choice = 0;
+			}
+			else
+			{
+				char key;
+				char buf[40];
+			
+				repeat:
+				/* Give the menu */
+				
+				screen_save();
+			
+				prt(" Choose your new race:", 1, 20);
+				prt("", 2, 20);
+				for (i = 0; i < MAX_NEXT_FORMS; i++)
+				{
+					if (rp_ptr->next_form_indices[i] < 0) break;
+					prt(format(" %c) %s", I2A(i), p_info[rp_ptr->next_form_indices[i]].name), i + 3, 20);
+				}
+				prt("", i + 3, 20);
+				prt(" h) Help", i + 4, 20);
+				prt("", i + 5, 20);
+				
+				while (1)
+				{
+					key = inkey();
+					key = tolower(key);
+					
+					/* Help */
+					if (key == 'h')
+					{
+						strnfmt(buf, sizeof(buf), "monrace.txt#%s", rp_ptr->name);
+						show_file(buf, NULL, 0, 0);
+						screen_load();
+						goto repeat;
+					}
+					
+					if (key >= 'a' && key < I2A(i)) break;
+				}
+			
+				screen_load();
+			
+				choice = A2I(key);
+			}
+			p_ptr->prace = rp_ptr->next_form_indices[choice];
 			rp_ptr = &p_info[p_ptr->prace];
 			p_ptr->expfact = rp_ptr->r_exp + cp_ptr->c_exp;
 			p_ptr->hitdie = rp_ptr->r_mhp + cp_ptr->c_mhp;
@@ -236,7 +285,7 @@ bool adjust_panel(int y, int x)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < reposband_TERM_MAX; j++)
+	for (j = 0; j < REPOSBAND_TERM_MAX; j++)
 	{
 		int wx, wy;
 		int screen_hgt, screen_wid;
@@ -282,7 +331,7 @@ bool change_panel(int dir)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < reposband_TERM_MAX; j++)
+	for (j = 0; j < REPOSBAND_TERM_MAX; j++)
 	{
 		int screen_hgt, screen_wid;
 		int wx, wy;
@@ -344,7 +393,7 @@ void verify_panel_int(bool centered)
 	int j;
 
 	/* Scan windows */
-	for (j = 0; j < reposband_TERM_MAX; j++)
+	for (j = 0; j < REPOSBAND_TERM_MAX; j++)
 	{
 		term *t = reposband_term[j];
 

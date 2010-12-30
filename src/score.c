@@ -414,14 +414,14 @@ void enter_score(time_t *death_time)
 	int j;
 
 	/* Cheaters are not scored */
-	for (j = OPT_SCORE; j < OPT_MAX; ++j)
+/*	for (j = OPT_SCORE; j < OPT_MAX; ++j)
 	{
 		if (!op_ptr->opt[j]) continue;
 
 		msg_print("Score not registered for cheaters.");
 		message_flush();
 		return;
-	}
+	} */
 
 	/* Wizard-mode pre-empts scoring */
 	if (p_ptr->noscore & (NOSCORE_WIZARD | NOSCORE_DEBUG))
@@ -449,12 +449,12 @@ void enter_score(time_t *death_time)
 	}
 
 	/* Hack -- Quitter */
-	else if (!p_ptr->total_winner && streq(p_ptr->died_from, "Quitting"))
+/*	else if (!p_ptr->total_winner && streq(p_ptr->died_from, "Quitting"))
 	{
 		msg_print("Score not registered due to quitting.");
 		message_flush();
-	}
-
+	} */
+	
 	/* Add a new entry to the score list, see where it went */
 	else
 	{
