@@ -209,8 +209,8 @@ static struct store *store_new(int idx) {
 	s->stock = mem_zalloc(sizeof(*s->stock) * STORE_INVEN_MAX);
 	s->stock_size = STORE_INVEN_MAX;
 	//if you go past D) in home, things go bananas -Simon
-	if(idx == STORE_HOME)
-		s->stock_size = 128;
+	//if(idx == STORE_HOME)
+	//	s->stock_size = 128;
 	return s;
 }
 

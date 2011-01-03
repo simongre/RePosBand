@@ -37,7 +37,7 @@
  * Name of the version/variant and its version string
  */
 #define VERSION_NAME   "Reposband"
-#define SAVEFILE_NAME  "REPOS"
+#define SAVEFILE_NAME  "RPOS"
 
 #ifdef BUILD_ID
 # define VERSION_STRING "0.5.3 (" BUILD_ID ")"
