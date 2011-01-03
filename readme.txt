@@ -13,4 +13,4 @@ If you're compiling the game yourself, read http://rephial.org/wiki/Compiling.
 
 Enjoy!
 
--- Simon Greenwood, paraphrasing Andi Sidwell, Angband's maintainer
+-- Andi Sidwell, Angband's maintainer

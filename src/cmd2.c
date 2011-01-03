@@ -287,9 +287,9 @@ static void chest_trap(int y, int x, s16b o_idx)
 	if (trap & (CHEST_POISON))
 	{
 		msg_print("A puff of green gas surrounds you!");
-		if (!(p_ptr->state.resist_pois || p_ptr->timed[TMD_OPP_POIS]))
+		if (!(p_ptr->state.resist_pois ||  p_ptr->timed[TMD_OPP_POIS]))// || p_ptr->state.immune_pois ))
 			(void)inc_timed(TMD_POISONED, 10 + randint1(20), TRUE);
-		else if (p_ptr->state.resist_pois)
+		else if (p_ptr->state.resist_pois)// || p_ptr->state.immune_pois)
 			wieldeds_notice_flag(OF_RES_POIS);
 	}
 
