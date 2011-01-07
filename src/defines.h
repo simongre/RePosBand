@@ -40,9 +40,9 @@
 #define SAVEFILE_NAME  "RPOS"
 
 #ifdef BUILD_ID
-# define VERSION_STRING "0.5.3 (" BUILD_ID ")"
+# define VERSION_STRING "0.5.4 (" BUILD_ID ")"
 #else
-# define VERSION_STRING "0.5.3"
+# define VERSION_STRING "0.5.4"
 #endif
 
 
@@ -141,7 +141,7 @@
 #define DEMIHUMAN_CLASS_MAX	5
 
 /* # of races that show up on the race select screen */
-#define SELECTABLE_RACE_MAX	16
+#define SELECTABLE_RACE_MAX	23
 
 /* most # of forms that monster race can branch into at one junction */
 #define MAX_NEXT_FORMS	5

@@ -421,14 +421,13 @@ bool py_attack_real(int y, int x)
 					message_format(MSG_FLEE, m_ptr->r_idx, "%^s flees in terror!", m_name);
 								       
 				/* Confusion attack */
-				if (p_ptr->confusing || (type2 == GF_OLD_CONF))
+				if (p_ptr->confusing)
 				{
+					/* Message */
+					msg_print("Your limbs stop glowing.");
+				
 					/* Cancel glowing hands */
 					p_ptr->confusing = FALSE;
-
-					/* Message */
-					/* XXX Most monsters don't have hands! */
-					msg_print("Your limbs stop glowing.");
 
 					/* Confuse the monster */
 					if (rf_has(r_ptr->flags, RF_NO_CONF))

@@ -235,7 +235,17 @@ void textui_obj_wield(object_type *o_ptr, int item)
 			item_tester_hook = obj_is_ammo;
 			if (!get_item(&slot, q, s, CMD_WIELD, USE_EQUIP)) return;
 		}
-		else
+		else if (((slot == INVEN_WIELD) && (rp_ptr->melee_slots > 1))
+				|| ((slot = INVEN_BOW) && (rp_ptr->range_slots > 1))
+				|| ((slot = INVEN_FINGER) && (rp_ptr->ring_slots > 1))
+				|| ((slot == INVEN_NECK) && (rp_ptr->amulet_slots > 1))
+				|| ((slot == INVEN_LIGHT) && (rp_ptr->light_slots > 1))
+				|| ((slot == INVEN_BODY) && (rp_ptr->body_slots > 1))
+				|| ((slot == INVEN_OUTER) && (rp_ptr->cloak_slots > 1))
+				|| ((slot == INVEN_ARM) && (rp_ptr->shield_slots > 1))
+				|| ((slot == INVEN_HEAD) && (rp_ptr->helm_slots > 1))
+				|| ((slot == INVEN_HANDS) && (rp_ptr->glove_slots > 1))
+				|| ((slot == INVEN_FEET) && (rp_ptr->boot_slots > 1)))
 		{
 			cptr q = "Replace which item? ";
 			cptr s = "Error in obj_wield, please report";

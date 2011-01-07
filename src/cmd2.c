@@ -1894,8 +1894,8 @@ static bool do_cmd_walk_test(int y, int x)
 	if (!(cave_info[y][x] & CAVE_MARK))
 		return TRUE;
 
-	/* Require open space */
-	if (!cave_floor_bold(y, x))
+	/* Require open space or PASS_WALL flag -Simon */
+	if (!cave_floor_bold(y, x) && !player_has(PF_PASS_WALL))
 	{
 		/* Rubble */
 		if (cave_feat[y][x] == FEAT_RUBBLE)
