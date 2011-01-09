@@ -1200,7 +1200,9 @@ bool res_stat(int stat)
 bool apply_disenchant(int mode)
 {
 	int t = 0;
-
+	int num_slots = rp_ptr->body_slots + rp_ptr->shield_slots + rp_ptr->cloak_slots + rp_ptr->glove_slots + rp_ptr->helm_slots + rp_ptr->boot_slots;
+	int eq_counter = INVEN_BODY - 1;
+	
 	object_type *o_ptr;
 
 	char o_name[80];
@@ -1209,21 +1211,29 @@ bool apply_disenchant(int mode)
 	/* Unused parameter */
 	(void)mode;
 
-	/* Pick a random slot */
-	switch (randint1(8))
+	if (num_slots == 0)
+		return (FALSE);
+	
+	/* Pick a (possibly empty) equipment slot, changed for new EQ system -Simon */
+	for (int i = randint1(num_slots); i > 0; i--)
 	{
-		case 1: t = INVEN_WIELD; break;
-		case 2: t = INVEN_BOW; break;
-		case 3: t = INVEN_BODY; break;
-		case 4: t = INVEN_OUTER; break;
-		case 5: t = INVEN_ARM; break;
-		case 6: t = INVEN_HEAD; break;
-		case 7: t = INVEN_HANDS; break;
-		case 8: t = INVEN_FEET; break;
+		eq_counter++;
+		if ((eq_counter >= INVEN_BODY + rp_ptr->body_slots) && (eq_counter < INVEN_OUTER))
+			eq_counter = INVEN_OUTER;
+		if ((eq_counter >= INVEN_OUTER + rp_ptr->cloak_slots) && (eq_counter < INVEN_ARM))
+			eq_counter = INVEN_ARM;
+		if ((eq_counter >= INVEN_ARM + rp_ptr->shield_slots) && (eq_counter < INVEN_HEAD))
+			eq_counter = INVEN_HEAD;
+		if ((eq_counter >= INVEN_HEAD + rp_ptr->helm_slots) && (eq_counter < INVEN_HANDS))
+			eq_counter = INVEN_HANDS;
+		if ((eq_counter >= INVEN_HANDS + rp_ptr->glove_slots) && (eq_counter < INVEN_FEET))
+			eq_counter = INVEN_FEET;
+		if (eq_counter >= INVEN_FEET + rp_ptr->boot_slots)
+			/* Should never end up here */
+			return (FALSE);
 	}
-
-	/* Get the item */
-	o_ptr = &p_ptr->inventory[t];
+	
+	o_ptr = &p_ptr->inventory[eq_counter];
 
 	/* No item, nothing happens */
 	if (!o_ptr->k_idx) return (FALSE);

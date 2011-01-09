@@ -48,7 +48,6 @@ screen redrawing means messages before evolution are dropped
 level gain messages can be displayed 2x or more if they occur after evolving
 can't use 'repeat command' with race powers
 powers can't use HP in lieu of mana (feature or bug?)
-pval of starting items is set in stone (feature or bug?)
 equippy chars don't display on main screen(design problem.. how to deal with a line too long?)
 innate melee info not displayed
 BAD PROGRAMMING: racial powers files should be in their own folder and better organized, I lazily copied them from pos
