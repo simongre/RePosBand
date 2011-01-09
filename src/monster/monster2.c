@@ -1780,6 +1780,9 @@ static bool place_monster_one(int y, int x, int r_idx, bool slp)
 	{
 		/* Unique monsters induce message */
 		if (OPT(cheat_hear)) msg_format("Unique (%s).", name);
+		
+		/* Monsters always know about their standard bearer */
+		if (r_idx == rp_ptr->king_index) msg_format("You sense the presence of the standard bearer of the %s race!", name);
 	}
 
 
@@ -2726,7 +2729,7 @@ void update_smart_learn(int m_idx, int what)
 		{
 			if (p_ptr->state.resist_pois) m_ptr->smart |= (SM_RES_POIS);
 			if (p_ptr->timed[TMD_OPP_POIS]) m_ptr->smart |= (SM_OPP_POIS);
-			//if (p_ptr->state.immune_pois) m_ptr->smart |= (SM_IMM_POIS);
+			if (p_ptr->state.immune_pois) m_ptr->smart |= (SM_IMM_POIS);
 			break;
 		}
 
@@ -2975,6 +2978,50 @@ void monster_death(int m_idx)
 		drop_near(i_ptr, 0, y, x, TRUE);
 	}
 
+	/* Mega-Hack -- drop "unique" treasures.  Copied from Pos -Simon */
+	if (rf_has(r_ptr->flags, RF_UNIQUE) && (r_ptr->artifact_index > 0))
+	{
+		artifact_type *a_ptr = &a_info[r_ptr->artifact_index];
+		
+		/* Kings always drop their treasure. Others with 1/15 chance */
+		if ((rp_ptr->king_index == m_ptr->r_idx) || one_in_(15))
+		{
+			char o_name[80];
+			char m_poss[80];
+			
+			monster_desc(m_poss, sizeof(m_poss), m_ptr, 0x22);
+
+			/* Message */
+			if (rp_ptr->king_index == m_ptr->r_idx)
+			{
+				msg_print("*** CONGRATULATIONS ***");
+				msg_format("You have slain the standard bearer, and now take %s place!", m_poss);
+				msg_print("You are now permanently blessed and heroic.");
+				p_ptr->standard_bearer = TRUE;
+				//p_ptr->update |= (PU_PANEL);
+				p_ptr->redraw |= (PR_STATE);
+				p_ptr->update |= (PU_BONUS);
+
+			}
+			/* Note: this can create duplicate artifacts, so only use it with artis that have 0 chance of dropping -Simon  */
+			/* Get local object */
+			i_ptr = &object_type_body;
+			/* Mega-Hack -- Make the item */
+			object_prep(i_ptr, objkind_get(a_ptr->tval, a_ptr->sval), 0, MAXIMISE);
+			i_ptr->name1 = r_ptr->artifact_index;
+			apply_magic(i_ptr, 0, TRUE, TRUE, TRUE);
+			
+			i_ptr->origin = ORIGIN_DROP;
+			i_ptr->origin_depth = p_ptr->depth;
+			i_ptr->origin_xtra = m_ptr->r_idx;
+			
+			object_desc(o_name, sizeof(o_name), i_ptr, ODESC_BASE);
+			msg_format("You notice the dying %s drop a strange %s.", r_ptr->name, o_name);
+			
+			/* Drop it in the dungeon */
+			drop_near(i_ptr, 0, y, x, TRUE);
+		}
+	}
 
 	/* Determine how much we can drop */
 	if (rf_has(r_ptr->flags, RF_DROP_20) && randint0(100) < 20) number++;

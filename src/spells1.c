@@ -923,22 +923,36 @@ static int inven_damage(inven_func typ, int cperc)
 static int minus_ac(void)
 {
 	object_type *o_ptr = NULL;
-
+	int num_slots = rp_ptr->body_slots + rp_ptr->shield_slots + rp_ptr->cloak_slots + rp_ptr->glove_slots + rp_ptr->helm_slots + rp_ptr->boot_slots;
+	int eq_counter = INVEN_BODY - 1;
+	
 	bitflag f[OF_SIZE];
 
 	char o_name[80];
 
-
-	/* Pick a (possibly empty) inventory slot */
-	switch (randint1(6))
+	if (num_slots == 0)
+		return (FALSE);
+	
+	/* Pick a (possibly empty) equipment slot, changed for new EQ system -Simon */
+	for (int i = randint1(num_slots); i > 0; i--)
 	{
-		case 1: o_ptr = &p_ptr->inventory[INVEN_BODY]; break;
-		case 2: o_ptr = &p_ptr->inventory[INVEN_ARM]; break;
-		case 3: o_ptr = &p_ptr->inventory[INVEN_OUTER]; break;
-		case 4: o_ptr = &p_ptr->inventory[INVEN_HANDS]; break;
-		case 5: o_ptr = &p_ptr->inventory[INVEN_HEAD]; break;
-		case 6: o_ptr = &p_ptr->inventory[INVEN_FEET]; break;
+		eq_counter++;
+		if ((eq_counter >= INVEN_BODY + rp_ptr->body_slots) && (eq_counter < INVEN_OUTER))
+			eq_counter = INVEN_OUTER;
+		if ((eq_counter >= INVEN_OUTER + rp_ptr->cloak_slots) && (eq_counter < INVEN_ARM))
+			eq_counter = INVEN_ARM;
+		if ((eq_counter >= INVEN_ARM + rp_ptr->shield_slots) && (eq_counter < INVEN_HEAD))
+			eq_counter = INVEN_HEAD;
+		if ((eq_counter >= INVEN_HEAD + rp_ptr->helm_slots) && (eq_counter < INVEN_HANDS))
+			eq_counter = INVEN_HANDS;
+		if ((eq_counter >= INVEN_HANDS + rp_ptr->glove_slots) && (eq_counter < INVEN_FEET))
+			eq_counter = INVEN_FEET;
+		if (eq_counter >= INVEN_FEET + rp_ptr->boot_slots)
+			/* Should never end up here */
+			return (FALSE);
 	}
+	
+	o_ptr = &p_ptr->inventory[eq_counter];
 
 	/* Nothing to damage */
 	if (!o_ptr->k_idx) return (FALSE);
@@ -3207,8 +3221,7 @@ static bool project_m(int who, int r, int y, int x, int dam, int typ, bool obvio
 	if(!mon_died && do_sleep)
 	{
 		/* Monsters can be immune, and so are uniques */
-		if (rf_has(r_ptr->flags, RF_NO_SLEEP) ||
-		    rf_has(r_ptr->flags, RF_UNIQUE))
+		if (rf_has(r_ptr->flags, RF_NO_SLEEP) || rf_has(r_ptr->flags, RF_UNIQUE))
 		{
 			/* Immune.  Learn about sleep and get a message only if it's already obvious */
 			if (seen && obvious)
@@ -3382,8 +3395,8 @@ static bool project_p(int who, int r, int y, int x, int dam, int typ, bool obvio
 			if (p_ptr->timed[TMD_OPP_POIS])
 				dam = RES_POIS_ADJ(dam, NOT_USED);
 
-			//if (p_ptr->state.immune_pois)
-			//	break;
+			if (p_ptr->state.immune_pois)
+				break;
 			
 			take_hit(dam, killer);
 			if (!(p_ptr->state.resist_pois || p_ptr->timed[TMD_OPP_POIS]))
