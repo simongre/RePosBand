@@ -471,9 +471,9 @@ bool py_attack_real(int y, int x)
 				}
 				
 				/* Damage, check for fear and death */
-				
-				dead = (m_ptr->hp < k);				
+				/* Hack: check if the square is empty after we project the attack into it -Simon */
 				project(-1, 0, y, x, k, type, flg);	
+				dead = (cave_m_idx[y][x] == 0);
 				//dead = mon_take_hit(cave_m_idx[y][x], k, &fear, NULL);
 			
 				/* Hack -- delay fear messages */

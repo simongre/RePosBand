@@ -26,7 +26,6 @@ TODO:
 from high to low priority:
 copy over pos' balanced ice/water, fire/lava, etc elementals
 maybe copy ainur too
-allow branding to effect innate melee
 more powers for new monsters
 infinite home room (put on hold)
 summoning (hard)
