@@ -10428,30 +10428,31 @@ D: he despises material beings.
 # Shadow Dragon king.  Appears only when "normal" Glaurung is killed.
 # XXX Might be a little too tough.
 
-N:639:The Shadow of Glaurung
-#G:D:G
-#I:130:75d100:30:140:70
-#W:90:3:169:60000:481
-#B:CLAW:HURT:6d12
-#B:CLAW:HURT:6d12
-#B:BITE:COLD:9d14
-#B:BITE:EXP_80:9d14
-#F:UNIQUE | FORCE_MAXHP | FORCE_SLEEP | ONLY_ITEM
-#F:INVISIBLE | PASS_WALL
-#F:DROP_2D2 | DROP_3D2 | DROP_4D2 | DROP_GOOD | DROP_GREAT
-#F:SMART | COLD_BLOOD | CLOUD_SURROUND | BASH_DOOR | POWERFUL
-#F:UNDEAD | CHAOTIC | IM_COLD | IM_POIS | RES_NETHR | NO_SLEEP
-#F:DRAGON | EVIL | NO_CONF
-#F:NO_SLEEP
-#S:SPELL_PCT_55 | POW_65
-#S:BRTH_POIS | BRTH_NETHR | BRTH_COLD | BRTH_MANA
-#S:SCARE | BLIND | CONF | S_HI_DRAGON
+N:639:The Shade of Glaurung
+G:D:G
+I:130:7500:30:140:70
+W:90:3:169:60000:481
+B:CLAW:HURT:6d12
+B:CLAW:HURT:6d12
+B:BITE:COLD:9d14
+B:BITE:EXP_80:9d14
+F:UNIQUE | FORCE_SLEEP | ONLY_ITEM
+F:INVISIBLE | PASS_WALL
+F:DROP_4 | DROP_GOOD | DROP_GREAT
+F:SMART | COLD_BLOOD | BASH_DOOR | POWERFUL
+F:UNDEAD | IM_COLD | IM_POIS | NO_SLEEP
+F:DRAGON | EVIL | NO_CONF
+#F:CLOUD_SURROUND | CHAOTIC | 
+S:1_IN_2
+# | POW_65
+S:BR_POIS | BR_NETH | BR_COLD | BR_MANA
+S:SCARE | BLIND | CONF | S_HI_DRAGON
 #Y:19
-#D:Glaurung, the Father of Dragons is dead now, but his threat is not over
-#D: yet.  His undead ghost, created by Sauron, still haunts the deepest
-#D: vaults of Angband.  His gigantic form is almost invisible, but his
-#D: eyes are glowing brightly with anger.  His flame is extinguished, but
-#D: his deadly chill is even more terrible.
+D:Glaurung, the Father of Dragons is dead now, but his threat is not over
+D: yet.  His undead ghost, created by Sauron, still haunts the deepest
+D: vaults of Angband.  His gigantic form is almost invisible, but his
+D: eyes are glowing brightly with anger.  His flame is extinguished, but
+D: his deadly chill is even more terrible.
 
 
 # Low-level demon to fill the gap between tengu and bodak.

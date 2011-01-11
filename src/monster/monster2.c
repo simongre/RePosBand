@@ -1809,7 +1809,7 @@ static bool place_monster_one(int y, int x, int r_idx, bool slp)
 		if (OPT(cheat_hear)) msg_format("Unique (%s).", name);
 		
 		/* Monsters always know about their standard bearer */
-		if (r_idx == rp_ptr->king_index) msg_format("You sense the presence of the standard bearer of the %s race!", name);
+		if (r_idx == rp_ptr->king_index) msg_format("You sense the presence of the champion of your race!", name);
 	}
 
 
@@ -1877,6 +1877,7 @@ static bool place_monster_one(int y, int x, int r_idx, bool slp)
 	/* Set alignment to the player */
 	if (summon_pets_hack)
 	{
+		msg_print("Pet summoning sort of works!");
 		if (rf_has(r_ptr->flags, RF_LAWFUL))
 			n_ptr->align = AL_PET_L;
 		else if (rf_has(r_ptr->flags, RF_CHAOTIC))
@@ -2780,9 +2781,6 @@ bool summon_specific_pet(int y1, int x1, int lev, int type)
 
 	/* Handle failure */
 	if (!r_idx) return (FALSE);
-
-	/* Attempt to place the monster (awake, allow groups) */
-	if (!place_monster_aux(y, x, r_idx, FALSE, TRUE)) return (FALSE);
 
 	summon_pets_hack = TRUE;
 

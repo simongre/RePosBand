@@ -2143,13 +2143,13 @@ W:95:0:230:300000
 A:0:0 to 127
 P:0:8d4:0:25:-25
 F:STR | CON | SPEED | BLOWS
-F:BRAND_FIRE | SLAY_ORC | SLAY_TROLL | SLAY_GIANT | SLAY_UNDEAD | KILL_DRAGON
+F:BRAND_FIRE | BRAND_ELEC
 F:IM_ELEC | IM_FIRE | RES_NETHR | RES_CHAOS | RES_DISEN
 F:REGEN | SEE_INVIS | HOLD_LIFE | AGGRAVATE | LIGHT_CURSE | HEAVY_CURSE | PERMA_CURSE
 D:The black axe of Gothmog, Lord of Balrog, high captain of Angband;
 D: the weapon of slaughter with which he brought ruin upon the Elves at
 D: the Battle of Unnumbered Tears and slew Fingon their King.
-D: Forged in the fires of Morgoth, it cuts through bone and steel alike.
+D: Forged in the fires of Mordor, it cuts through bone and steel alike.
 
 N:156:of Tselakus
 I:crown:Iron Crown~:4
