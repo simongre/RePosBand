@@ -835,7 +835,7 @@ const char *mention_use(int slot)
  */
 cptr describe_use(int i)
 {
-	cptr p;
+	cptr p = "";
 
 	if ((i >= INVEN_WIELD) && (i < INVEN_BOW))
 	{
@@ -846,7 +846,7 @@ cptr describe_use(int i)
 		else
 			p = "attacking monsters with";
 	}
-	if ((i >= INVEN_BOW) && (i < INVEN_FINGER))
+	else if ((i >= INVEN_BOW) && (i < INVEN_FINGER))
 	{
 		object_type *o_ptr;
 		o_ptr = &p_ptr->inventory[i];
@@ -855,26 +855,26 @@ cptr describe_use(int i)
 		else
 			p = "shooting missiles with";
 	}
-	if ((i >= INVEN_FINGER) && (i < INVEN_NECK))
+	else if ((i >= INVEN_FINGER) && (i < INVEN_NECK))
 		p = "wearing on your finger/claw/wing/etc";
-	if ((i >= INVEN_NECK) && (i < INVEN_LIGHT))
+	else if ((i >= INVEN_NECK) && (i < INVEN_LIGHT))
 		p = "wearing around your neck";
-	if ((i >= INVEN_LIGHT) && (i < INVEN_BODY))
+	else if ((i >= INVEN_LIGHT) && (i < INVEN_BODY))
 		p = "using to light the way";
-	if ((i >= INVEN_BODY) && (i < INVEN_OUTER))
+	else if ((i >= INVEN_BODY) && (i < INVEN_OUTER))
 		p = "wearing on your body";
-	if ((i >= INVEN_OUTER) && (i < INVEN_ARM))
+	else if ((i >= INVEN_OUTER) && (i < INVEN_ARM))
 		p = "wearing on your back";
-	if ((i >= INVEN_ARM) && (i < INVEN_HEAD))
+	else if ((i >= INVEN_ARM) && (i < INVEN_HEAD))
 		p = "shielding yourself with";
-	if ((i >= INVEN_HEAD) && (i < INVEN_HANDS))
+	else if ((i >= INVEN_HEAD) && (i < INVEN_HANDS))
 		p = "wearing on your head";
-	if ((i >= INVEN_HANDS) && (i < INVEN_FEET))
+	else if ((i >= INVEN_HANDS) && (i < INVEN_FEET))
 		p = "wearing on your hands";
-	if ((i >= INVEN_FEET) && (i < INVEN_TOTAL))
+	else if ((i >= INVEN_FEET) && (i < INVEN_TOTAL))
 		p = "wearing on your feet";
-	//else
-	//	p = sprintf("ERROR: slot number %d", (char *)i); 
+	else
+		sprintf(p, "ERROR: slot number %d", i); 
 
 		/* Return the result */
 	return p;

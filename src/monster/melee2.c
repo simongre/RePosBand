@@ -3029,7 +3029,7 @@ static void process_monster(int m_idx)
 		u32b notice;
 
 		/* Aggravation */
-		if (p_ptr->state.aggravate)
+		if (p_ptr->state.aggravate && (m_ptr & AL_HOSTILE_MASK))
 		{
 			/* Reset sleep counter */
 			woke_up = wake_monster(m_ptr);
@@ -3283,8 +3283,11 @@ static void process_monster(int m_idx)
 
 
 	/* Attempt to cast a spell */
-	if (make_attack_spell(m_idx)) return;
-
+	if (m_ptr->align & AL_HOSTILE_MASK)
+		if (make_attack_spell(m_idx)) return;
+	else if (m_ptr->align & AL_PET_MASK)
+		if (make_attack_spell_mon(m_idx)) return;
+	
 
 	/* Reset */
 	stagger = FALSE;
@@ -3583,20 +3586,8 @@ static void process_monster(int m_idx)
 			}
 		}
 
-
-		/* Some monsters never move */
-		if (do_move && rf_has(r_ptr->flags, RF_NEVER_MOVE))
-		{
-			/* Learn about lack of movement */
-			if (m_ptr->ml) rf_on(l_ptr->flags, RF_NEVER_MOVE);
-
-			/* Do not move */
-			do_move = FALSE;
-		}
-
-
 		/* A monster is in the way */
-		if (do_move && (cave_m_idx[ny][nx] > 0))
+		if (do_move && (cave_m_idx[ny][nx] > 0) && !rf_has(r_ptr->flags, RF_NEVER_MOVE))
 		{
 			monster_type *n_ptr = &mon_list[cave_m_idx[ny][nx]];
 			
@@ -3616,7 +3607,7 @@ static void process_monster(int m_idx)
 			|| (!(m_ptr->align & (AL_PET_MASK)) && (n_ptr->align & (AL_PET_MASK))))
 				make_attack_normal_mon(m_ptr, n_ptr);
 				
-			/* If you're confused, attack! -Simon */
+			/* If you're confused, attack! (sometimes) -Simon */
 			if ((m_ptr->confused) && one_in_(2))
 				make_attack_normal_mon(m_ptr, n_ptr);
 			
@@ -3662,6 +3653,17 @@ static void process_monster(int m_idx)
 				}
 			}
 		}
+		
+		/* Some monsters never move */
+		if (do_move && rf_has(r_ptr->flags, RF_NEVER_MOVE))
+		{
+			/* Learn about lack of movement */
+			if (m_ptr->ml) rf_on(l_ptr->flags, RF_NEVER_MOVE);
+
+			/* Do not move */
+			do_move = FALSE;
+		}
+
 
 		/* Creature has been allowed move */
 		if (do_move)
@@ -3811,7 +3813,18 @@ static void process_monster(int m_idx)
 	if (OPT(birth_ai_smart) && !do_turn && !do_move)
 	{
 		/* Cast spell */
-		if (make_attack_spell(m_idx)) return;
+		if (m_ptr->align & AL_PET_MASK)
+		{
+			if (make_attack_spell_mon(m_idx))
+				return;
+		}
+		else if (m_ptr->align & AL_HOSTILE_MASK)
+		{
+			if (make_attack_spell(m_idx))
+				return;
+		}
+		else
+			msg_print("ERROR: no alignment mask");
 	}
 
 	if (rf_has(r_ptr->flags, RF_HAS_LITE)) do_view = TRUE;
@@ -3946,7 +3959,8 @@ void process_monsters(byte minimum_energy)
 		if ((m_ptr->cdis <= r_ptr->aaf) ||
 		    (m_ptr->hp < m_ptr->maxhp) ||
 		    player_has_los_bold(m_ptr->fy, m_ptr->fx) ||
-		    monster_can_flow(i))
+		    monster_can_flow(i) ||
+			(m_ptr->align & AL_PET_MASK))
 		{
 			/* Process the monster */
 			process_monster(i);

@@ -517,19 +517,19 @@ cptr power_info(int power)
 		 
 		case PWR_CURE_CRITICAL:
 
-			sprintf(s, "heal 25%");
+			sprintf(s, "heal 25 percent");
 
 			break;
 		 
 		case PWR_CURE_LIGHT:
 
-			sprintf(s, "heal 15%");
+			sprintf(s, "heal 15 percent");
 
 			break;
 		 
 		case PWR_CURE_SERIOUS:
 
-			sprintf(s, "heal 20%");
+			sprintf(s, "heal 20 percent");
 
 			break;
 		 
@@ -728,13 +728,11 @@ cptr power_info(int power)
 			sprintf(s, "dam %d", p_ptr->lev * 2);
 
 			break;
-	/*	 
+			
 		case PWR_PROJECT_CRYO:
-
 			sprintf(s, "dam %d", p_ptr->lev * 3);
-
 			break;
-	*/	 
+			
 		case PWR_PROJECT_DISEN:
 
 			sprintf(s, "dam %d", p_ptr->lev * 3 / 2);
@@ -752,7 +750,7 @@ cptr power_info(int power)
 			sprintf(s, "dam %d", p_ptr->lev * 2);
 
 			break;
-	/*	 
+	 
 		case PWR_REMEMBRANCE:
 
 			break;
@@ -972,7 +970,6 @@ cptr power_info(int power)
 		case PWR_WORD_OF_RECALL:
 
 			break;
-	*/ 
 	}
 	return s;
 }

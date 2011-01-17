@@ -10517,7 +10517,7 @@ S:DRAIN_MANA | DARKNESS | BR_COLD | BA_COLD | BO_COLD | BO_ICEE
 D:An evil spirit covered with frost.  It can turn mortals' blood to ice
 D: with a mere look.
 
-N:643:Zephyr King
+N:643:The Zephyr King
 G:Z:v
 I:130:6000:30:100:0
 W:80:3:0:40000

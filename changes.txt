@@ -51,9 +51,6 @@ equippy chars don't display on main screen(design problem.. how to deal with a l
 innate melee info not displayed
 BAD PROGRAMMING: racial powers files should be in their own folder and better organized, I lazily copied them from pos
 eq slots past 23 aren't labelled correctly
-player dumps show level X being achieved multiple times, eg:
-    215913   2000'   31   Reached level 31
-    215942   2000'   31   Found The Leather Scale Mail 'Thalkettoth'
-    224523   2100'   31   Reached level 31
-    226574   2100'   31   Reached level 31
-this might be bc of !restore XP
+sometimes worn objects psuedo as being in the wrong slot ("you feel the body armor in your pack is excellent...")
+randarts turned on = no names for racial artifacts
+high scores table lists wrong species
