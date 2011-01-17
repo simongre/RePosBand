@@ -3029,7 +3029,7 @@ static void process_monster(int m_idx)
 		u32b notice;
 
 		/* Aggravation */
-		if (p_ptr->state.aggravate && (m_ptr & AL_HOSTILE_MASK))
+		if (p_ptr->state.aggravate && (m_ptr->align & AL_HOSTILE_MASK))
 		{
 			/* Reset sleep counter */
 			woke_up = wake_monster(m_ptr);
@@ -3284,9 +3284,11 @@ static void process_monster(int m_idx)
 
 	/* Attempt to cast a spell */
 	if (m_ptr->align & AL_HOSTILE_MASK)
+	{
 		if (make_attack_spell(m_idx)) return;
+	}
 	else if (m_ptr->align & AL_PET_MASK)
-		if (make_attack_spell_mon(m_idx)) return;
+		/*if (make_attack_spell_mon(m_idx)) */return;
 	
 
 	/* Reset */
@@ -3815,7 +3817,7 @@ static void process_monster(int m_idx)
 		/* Cast spell */
 		if (m_ptr->align & AL_PET_MASK)
 		{
-			if (make_attack_spell_mon(m_idx))
+//			if (make_attack_spell_mon(m_idx))
 				return;
 		}
 		else if (m_ptr->align & AL_HOSTILE_MASK)
