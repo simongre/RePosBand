@@ -392,7 +392,7 @@ bool use_power(int power)
 			case PWR_BR_ELEC_BALL:
 			{
 				if (!get_aim_dir(&dir)) return (FALSE);
-				msg_print("You breathe lighning.");
+				msg_print("You breathe lightning.");
 				fire_ball(GF_ELEC, dir, plev * 6, 1 + plev / 15);//, plev > 30 ? 45 : 30);
 			}
 			break;
