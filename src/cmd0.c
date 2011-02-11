@@ -647,7 +647,7 @@ static bool key_confirm_command(unsigned char c)
 	int i;
 
 	/* Hack -- Scan equipment */
-	for (i = INVEN_WIELD; i < INVEN_TOTAL; i++)
+	for (i = INVEN_WIELD; i < ALL_INVEN_TOTAL; i++)
 	{
 		char verify_inscrip[] = "^*";
 		unsigned n;

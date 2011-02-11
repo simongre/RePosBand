@@ -2068,12 +2068,11 @@ bool make_attack_spell(int m_idx)
 	{
 		l_ptr->deaths++;
 	}
-
-
-	/* A spell was cast */
-	return (TRUE);
-}
-
+	
+	/* spell was cast, so return true */
+	return TRUE;
+}	
+	
 
 
 /*
@@ -3288,7 +3287,8 @@ static void process_monster(int m_idx)
 		if (make_attack_spell(m_idx)) return;
 	}
 	else if (m_ptr->align & AL_PET_MASK)
-		/*if (make_attack_spell_mon(m_idx)) */return;
+		//if (make_attack_spell_mon(m_idx)) return;
+		return;
 	
 
 	/* Reset */
@@ -3817,7 +3817,7 @@ static void process_monster(int m_idx)
 		/* Cast spell */
 		if (m_ptr->align & AL_PET_MASK)
 		{
-//			if (make_attack_spell_mon(m_idx))
+			//if (make_attack_spell_mon(m_idx))
 				return;
 		}
 		else if (m_ptr->align & AL_HOSTILE_MASK)
